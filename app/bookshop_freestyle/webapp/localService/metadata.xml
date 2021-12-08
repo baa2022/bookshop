@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="AdminService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Books" EntityType="AdminService.Books">
+                    <NavigationPropertyBinding Path="genre" Target="Genres"/>
+                    <NavigationPropertyBinding Path="author" Target="Authors"/>
+                    <NavigationPropertyBinding Path="orders" Target="OrderItems"/>
+                </EntitySet>
+                <EntitySet Name="Authors" EntityType="AdminService.Authors">
+                    <NavigationPropertyBinding Path="books" Target="Books"/>
+                </EntitySet>
+                <EntitySet Name="Orders" EntityType="AdminService.Orders">
+                    <NavigationPropertyBinding Path="items" Target="OrderItems"/>
+                </EntitySet>
+                <EntitySet Name="OrderItems" EntityType="AdminService.OrderItems">
+                    <NavigationPropertyBinding Path="up_" Target="Orders"/>
+                    <NavigationPropertyBinding Path="book" Target="Books"/>
+                </EntitySet>
+                <EntitySet Name="Genres" EntityType="AdminService.Genres">
+                    <NavigationPropertyBinding Path="books" Target="Books"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Books">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="stock" Type="Edm.Int32"/>
+                <Property Name="price" Type="Edm.Decimal" Scale="2" Precision="9"/>
+                <Property Name="currency" Type="Edm.String" MaxLength="111" DefaultValue="USD"/>
+                <Property Name="title" Type="Edm.String" MaxLength="111"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1111"/>
+                <NavigationProperty Name="genre" Type="AdminService.Genres" Partner="books">
+                    <ReferentialConstraint Property="genre_title" ReferencedProperty="title"/>
+                </NavigationProperty>
+                <Property Name="genre_title" Type="Edm.String" MaxLength="111"/>
+                <NavigationProperty Name="author" Type="AdminService.Authors" Partner="books">
+                    <ReferentialConstraint Property="author_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="author_ID" Type="Edm.Guid"/>
+                <Property Name="rating" Type="Edm.Int32"/>
+                <NavigationProperty Name="orders" Type="Collection(AdminService.OrderItems)" Partner="book"/>
+            </EntityType>
+            <EntityType Name="Authors">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="fullName" Type="Edm.String" MaxLength="111"/>
+                <Property Name="creationDateTime" Type="Edm.DateTimeOffset"/>
+                <NavigationProperty Name="books" Type="Collection(AdminService.Books)" Partner="author"/>
+            </EntityType>
+            <EntityType Name="Orders">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="date" Type="Edm.Date"/>
+                <Property Name="fullName" Type="Edm.String" MaxLength="111"/>
+                <Property Name="email" Type="Edm.String" MaxLength="111"/>
+                <Property Name="phone" Type="Edm.String" MaxLength="111"/>
+                <Property Name="address" Type="Edm.String" MaxLength="300"/>
+                <NavigationProperty Name="items" Type="Collection(AdminService.OrderItems)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="OrderItems">
+                <Key>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="book_ID"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="AdminService.Orders" Nullable="false" Partner="items">
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="quantity" Type="Edm.Int32"/>
+                <NavigationProperty Name="book" Type="AdminService.Books" Partner="orders">
+                    <ReferentialConstraint Property="book_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="book_ID" Type="Edm.Guid" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Genres">
+                <Key>
+                    <PropertyRef Name="title"/>
+                </Key>
+                <Property Name="title" Type="Edm.String" MaxLength="111" Nullable="false"/>
+                <NavigationProperty Name="books" Type="Collection(AdminService.Books)" Partner="genre"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
