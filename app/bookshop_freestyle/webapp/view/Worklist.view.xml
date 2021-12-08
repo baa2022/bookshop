@@ -7,13 +7,22 @@
 	<semantic:SemanticPage
 		id="page"
 		headerPinnable="false"
-		toggleHeaderOnTitleClick="false">
+		toggleHeaderOnTitleClick="false"
+        showFooter="true">
 
 		<semantic:titleHeading>
 			<Title
 				text="{i18n>worklistTitle}"
 				level="H2"/>
 		</semantic:titleHeading>
+
+        <semantic:titleBreadcrumbs>
+			<Breadcrumbs>
+				<Link 
+                    text="{i18n>BooksLinkLabel}"
+                    enabled="false"/>
+			</Breadcrumbs>
+		</semantic:titleBreadcrumbs>
 
 		<semantic:content>
 			<Table
@@ -24,10 +33,10 @@
 					sorter: {
 						path: 'ID',
 						descending: false
-					}
+					},
+                    parameters: {expand: 'author, genre'}
 				}"
 				noDataText="{worklistView>/tableNoDataText}"
-				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
 				growing="true"
 				growingScrollToLoad="true"
 				updateFinished=".onUpdateFinished">
@@ -53,12 +62,78 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					<Column 
+                        id="nameColumn">
+						<Text 
+                            text="{i18n>tableNameColumnTitle}" 
+                            id="nameColumnTitle"/>
 					</Column>
-					<Column id="unitNumberColumn" hAlign="End">
-						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+					<Column 
+                        id="authorColumn">
+                            <Text 
+                                text="{i18n>tableAuthorColumnTitle}" 
+                                id="authorColumnTitle"/>
 					</Column>
+					<Column 
+                        id="genreColumn">
+                        <HBox
+                            alignItems="Center">
+                            <Text 
+                                text="{i18n>tableGenreColumnTitle}" 
+                                id="genreColumnTitle"/>
+                            <Button 
+                                icon="sap-icon://sort"
+                                type="Transparent"
+                                press=".onSortBtnPress($event, 'genre')"
+                                tooltip="{i18n>sortBtnTooltip}" />
+                        </HBox>
+					</Column>
+					<Column 
+                        id="descriptionColumn">
+						<Text 
+                            text="{i18n>tableDescriptionColumnTitle}" 
+                            id="descriptionColumnTitle"/>
+					</Column>
+					<Column 
+                        id="priceColumn" 
+                        hAlign="End">
+                        <HBox
+                            alignItems="Center">
+                            <Text 
+                                text="{i18n>tablePriceColumnTitle}" 
+                                id="priceColumnTitle"/>
+                            <Button 
+                                icon="sap-icon://sort"
+                                type="Transparent"
+                                press=".onSortBtnPress($event, 'price')"
+                                tooltip="{i18n>sortBtnTooltip}" />
+                        </HBox>
+					</Column>
+					<Column
+                        id="stockColumn" 
+                        hAlign="End"
+                        width="9%">
+						<Text 
+                            text="{i18n>tableStockColumnTitle}" 
+                            id="stockColumnTitle"/>
+					</Column>
+					<Column 
+                        id="ratingColumn">
+                        <HBox
+                            alignItems="Center">
+                            <Text 
+                                text="{i18n>tableRatingColumnTitle}" 
+                                id="ratingColumnTitle"/>
+                            <Button 
+                                icon="sap-icon://sort"
+                                type="Transparent"
+                                press=".onSortBtnPress($event, 'rating')"
+                                tooltip="{i18n>sortBtnTooltip}" />
+                        </HBox>
+					</Column>
+					<Column
+                        hAlign="End"
+                        width="10%"/>
 				</columns>
 
 				<items>
@@ -66,18 +141,59 @@
 						type="Navigation"
 						press=".onPress">
 						<cells>
-							<ObjectIdentifier
-								title="{ID}"/>
-							<ObjectNumber />
+							<Text
+								text="{title}"/>
+							<Text
+								text="{author/fullName}"
+                                id="authorFullName"/>
+                            <Text
+								text="{genre/title}"/>
+							<Text
+								text="{descr}"
+                                tooltip="{descr}"
+                                maxLines="1"/>
+                            <ObjectNumber
+                                number="{price}"
+                                unit="{i18n>priceUnit}"/>
+                            <Text
+								text="{stock}"/>
+                            <RatingIndicator 
+                                value="{rating}"
+                                editable="false" />
+                            <HBox>
+                                <Button
+                                    press=".onDeleteBookPress"
+                                    icon="sap-icon://delete"
+                                    type="Transparent"
+                                    tooltip="{i18n>deleteBtnTooltip}"/>
+                                <Button
+                                    press=".onAddToCartPress"
+                                    icon="sap-icon://cart-3"
+                                    type="Transparent"
+                                    tooltip="{i18n>addToCartBtnTooltip}" />
+                            </HBox>
 						</cells>
 					</ColumnListItem>
 				</items>
 			</Table>
 		</semantic:content>
 
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-		</semantic:sendEmailAction>
+        <semantic:titleCustomIconActions>
+			<OverflowToolbarButton
+                id="openCart"
+                icon="sap-icon://cart"
+                press=".onOpenCartPress"
+                tooltip="{i18n>openCartBtnTooltip}">
+            </OverflowToolbarButton>
+		</semantic:titleCustomIconActions>
+
+		<semantic:footerCustomActions>
+			<Button
+                press=".onCreateBookPress"
+                icon="sap-icon://add"
+				text="{i18n>createBtnText}"
+                tooltip="{i18n>createBtnTooltip}"/>
+        </semantic:footerCustomActions>
 
 	</semantic:SemanticPage>
 
