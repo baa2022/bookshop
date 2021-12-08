@@ -2,29 +2,138 @@
 	controllerName="bookshop.freestyle.bookshopfreestyle.controller.Object"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:semantic="sap.f.semantic">
+	xmlns:semantic="sap.f.semantic"
+    xmlns:uxap="sap.uxap">
 
-	<semantic:SemanticPage
-		id="page"
-		headerPinnable="false"
-		toggleHeaderOnTitleClick="false"
-		busy="{objectView>/busy}"
-		busyIndicatorDelay="{objectView>/delay}">
+    <uxap:ObjectPageLayout
+        upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <VBox>
+                        <Title text="{title}"/>
+                        <Text text="{author/fullName}"/>
+                    </VBox>
+                </uxap:expandedHeading>
 
-		<semantic:titleHeading>
-			<Title
-				text="{ID}"
-				level="H2"/>
-		</semantic:titleHeading>
+                <uxap:actions>
+                    <Button 
+                        text="Edit" 
+                        type="Emphasized"/>
+					<Button 
+                        text="Delete" 
+                        type="Transparent" />
+                    <Button
+                        id="openCart"
+                        icon="sap-icon://cart"
+                        press=".onOpenCartPress"
+                        tooltip="{i18n>openCartBtnTooltip}"
+                        type="Transparent" />
+                </uxap:actions>
 
-		<semantic:headerContent>
-			<ObjectNumber />
-		</semantic:headerContent>
+                <uxap:breadcrumbs>
+                    <Breadcrumbs>
+                        <Link
+                            text="{i18n>worklistLinkLabel}"
+                            press=".onBookLinkPress" />
+                        <Link
+                            text="{i18n>objectLinkLabel}"
+                            enabled="false" />
+                    </Breadcrumbs>
+                </uxap:breadcrumbs>
+	        </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
 
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-		</semantic:sendEmailAction>
+        <uxap:sections>
+            <uxap:ObjectPageSection 
+                title="{i18n>objectPageDetailsSectionTitle}"
+                titleUppercase="false">
+                <uxap:ObjectPageSubSection>
+                    <Text text="{title}" />
+                </uxap:ObjectPageSubSection>                
+            </uxap:ObjectPageSection>
 
-	</semantic:SemanticPage>
+            <uxap:ObjectPageSection 
+                title="{i18n>objectPageOrdersSectionTitle}"
+                titleUppercase="false">
+                <uxap:ObjectPageSubSection>
+                    <Table
+                        id="ordersTable"
+                        items="{
+                            path: 'orders',
+                            parameters: {expand: 'up_'}
+                        }"
+                        noDataText="{booklistView>/tableNoDataText}"
+                        growing="true">
 
+                        <columns>
+                            <Column id="CustomerNameColumn">
+                                <Text
+                                    text="{i18n>tableCutomerNameColumnTitle}"
+                                    id="CustomerNameColumnTitle" />
+                            </Column>
+                            <Column
+                                id="CustomerEmailColumn"
+                                width="20%">
+                                <Text
+                                    text="{i18n>tableCutomerEmailColumnTitle}"
+                                    id="CustomerEmailColumnTitle" />
+                            </Column>
+                            <Column id="CustomerPhoneColumn">
+                                <Text
+                                    text="{i18n>tableCutomerPhoneColumnTitle}"
+                                    id="CustomerPhoneColumnTitle" />
+                            </Column>
+                            <Column
+                                id="CustomerAddressColumn"
+                                width="20%">
+                                <Text
+                                    text="{i18n>tableCutomerAddressColumnTitle}"
+                                    id="CustomerAddressColumnTitle" />
+                            </Column>
+                            <Column
+                                id="CustomerBookQuantityColumn"
+                                hAlign="End"
+                                width="15%">
+                                <Text
+                                    text="{i18n>tableCutomerBookQuantityColumnTitle}"
+                                    id="CustomerBookQuantityColumnTitle" />
+                            </Column>
+                            <Column 
+                                id="CustomerDateColumn">
+                                <HBox
+                                    alignItems="Center">
+                                    <Text
+                                        text="{i18n>tableCustomerDateColumnTitle}"
+                                        id="CustomerDateColumnTitle"
+                                        class="sapUiTinyMarginEnd" />
+                                </HBox>
+                            </Column>
+                        </columns>
+
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{up_/fullName}" />
+                                    <Text text="{up_/email}" />
+                                    <Text text="{up_/phone}" />
+                                    <Text text="{up_/address}" />
+                                    <Text text="{quantity}" />
+
+                                    <Text text="{
+                                        path: 'up_/date',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {
+                                            style: 'medium'
+                                        }
+                                    }" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </uxap:ObjectPageSubSection>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+
+    </uxap:ObjectPageLayout>
 </mvc:View>

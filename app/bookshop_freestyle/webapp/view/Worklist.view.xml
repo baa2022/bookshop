@@ -19,7 +19,7 @@
         <semantic:titleBreadcrumbs>
 			<Breadcrumbs>
 				<Link 
-                    text="{i18n>BooksLinkLabel}"
+                    text="{i18n>worklistLinkLabel}"
                     enabled="false"/>
 			</Breadcrumbs>
 		</semantic:titleBreadcrumbs>
@@ -34,7 +34,7 @@
 						path: 'ID',
 						descending: false
 					},
-                    parameters: {expand: 'author, genre'}
+                    parameters: {expand: 'author'}
 				}"
 				noDataText="{worklistView>/tableNoDataText}"
 				growing="true"
@@ -147,7 +147,7 @@
 								text="{author/fullName}"
                                 id="authorFullName"/>
                             <Text
-								text="{genre/title}"/>
+								text="{genre_title}"/>
 							<Text
 								text="{descr}"
                                 tooltip="{descr}"

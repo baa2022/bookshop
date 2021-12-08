@@ -28,6 +28,20 @@ sap.ui.define([
             this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
         },
 
+        onPress: function (oEvent) {
+            const objectId = oEvent.getSource().getBindingContext().getObject("ID");
+            const oNavigateParams = {
+                objectId: `(${objectId})`
+            };
+
+            this.navigateTo("object", {objectId: "(3b48fcc6-f5b9-4e16-9260-4bceaf8a50c3)"});
+            // this.getRouter().navTo("object", {
+            //     objectId: oEvent.getSource().getBindingContext().getPath().substring("/Books".length)
+            // });
+        },
+
+        
+
     });
 
 });
