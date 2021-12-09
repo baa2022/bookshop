@@ -3,7 +3,8 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:semantic="sap.f.semantic"
-    xmlns:uxap="sap.uxap">
+    xmlns:uxap="sap.uxap"
+    xmlns:form="sap.ui.layout.form">
 
     <uxap:ObjectPageLayout
         upperCaseAnchorBar="false">
@@ -16,12 +17,22 @@
                     </VBox>
                 </uxap:expandedHeading>
 
+                <uxap:snappedHeading>
+                    <VBox>
+                        <Title text="{title}"/>
+                        <Text text="{author/fullName}"/>
+                    </VBox>
+                </uxap:snappedHeading>
+
                 <uxap:actions>
                     <Button 
-                        text="Edit" 
-                        type="Emphasized"/>
+                        text="{i18n>editBtnText}"
+                        tooltip="{i18n>editBtnTooltip}"
+                        type="Emphasized"
+                        press=".onEditBookPress"/>
 					<Button 
-                        text="Delete" 
+                        text="{i18n>deleteBtnText}"
+                        tooltip="{i18n>deleteBtnTooltip}"
                         type="Transparent" />
                     <Button
                         id="openCart"
@@ -49,7 +60,9 @@
                 title="{i18n>objectPageDetailsSectionTitle}"
                 titleUppercase="false">
                 <uxap:ObjectPageSubSection>
-                    <Text text="{title}" />
+                     <form:SimpleForm
+                        id="formShell"
+                        editable="true"></form:SimpleForm>
                 </uxap:ObjectPageSubSection>                
             </uxap:ObjectPageSection>
 

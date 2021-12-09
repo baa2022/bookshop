@@ -1,0 +1,127 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+
+    <form:SimpleForm
+        editable="true"
+        layout="ResponsiveGridLayout"
+        labelSpanXL="2"
+        labelSpanL="2"
+        labelSpanM="2"
+        emptySpanXL="1"
+        emptySpanL="1"
+        emptySpanM="1"
+        columnsXL="1"
+        columnsL="1"
+        columnsM="1">
+        <Label
+            text="{i18n>AuthorLabel}"
+            design="Bold"
+            labelFor="authorField"
+            vAlign="Middle"
+            required="true" />
+        <ActionSelect
+            id="authorFormItem"
+            buttons="addAuthorBtn"
+            items="{
+				path: '/Authors',
+				sorter: {
+					path: 'creationDateTime',
+					descending: true
+				}
+			}"
+            selectedKey="{author_ID}">
+            <items>
+                <core:Item 
+                    key="{ID}"
+                    text="{fullName}" />
+            </items>
+            <dependents>
+                <Button
+                    id="addAuthorBtn"
+                    text="Add new author" 
+                    press=".onCreateAuthorPress" />
+            </dependents>
+        </ActionSelect>
+        <Label
+            text="{i18n>GenreLabel}"
+            design="Bold"
+            labelFor="genreField"
+            vAlign="Middle"
+            required="true" />
+        <Select
+			items="{/Genres}"
+            selectedKey="{genre}">
+            <core:Item 
+                text="{title}"
+                key="{title}" />
+        </Select>
+        <Label
+            text="{i18n>StockLabel}"
+            design="Bold"
+            labelFor="stockField"
+            vAlign="Middle"
+            required="true" />
+        <Input
+            value="{
+                path: 'stock',
+                type: 'sap.ui.model.type.Integer',
+                    constraints: {
+                        minimum: 0,
+                        maximum: 1000000
+                }
+            }"
+            type="Number"
+            fieldGroupIds="editBookControls"
+            valueLiveUpdate="true" />
+        <Label
+            text="{i18n>PriceLabel}"
+            design="Bold"
+            labelFor="priceField"
+            vAlign="Middle"
+            required="true" />
+        <Input
+            value="{
+                path: 'price',
+                type: 'sap.ui.model.type.Integer',
+                    constraints: {
+                        minimum: 0,
+                        maximum: 1000000
+                }
+            }"
+            type="Number"
+            description="{i18n>priceUnit}"
+            fieldWidth="90%" 
+            fieldGroupIds="editBookControls"
+            valueLiveUpdate="true" />
+        <Label
+            text="{i18n>DescriptionLabel}"
+            design="Bold"
+            labelFor="descriptionField"
+            vAlign="Middle"
+            required="true" />
+        <TextArea
+            value="{
+                path: 'descr',
+                type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1
+                }
+            }"
+            growing="true" 
+            fieldGroupIds="editBookControls"
+            valueLiveUpdate="true" />
+        <Label
+            text="{i18n>RatingLabel}"
+            design="Bold"
+            vAlign="Middle"
+            required="true" />
+        <RatingIndicator
+            id="ratingIndicator"
+            value="{rating}"
+            editable="true" 
+            change=".onValidateRatingIndicator" />
+    </form:SimpleForm>
+    
+</core:FragmentDefinition>
