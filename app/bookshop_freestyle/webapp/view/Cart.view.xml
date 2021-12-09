@@ -1,0 +1,45 @@
+<mvc:View
+	controllerName="bookshop.freestyle.bookshopfreestyle.controller.Cart"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic">
+
+    <Page
+        title="{i18n>cartViewTitle}"
+		id="page"
+        showFooter="true"
+        floatingFooter="false"
+        backgroundDesign="Solid"
+        showNavButton="true"
+        class="sapUiContentPadding"
+        navButtonPress=".onNavButtonPress">
+        <List
+            id="storesList"
+            items=""
+            mode="Delete"
+            delete=".onDeletePress"
+            noDataText="{i18n>cartEmptyCartText}">
+        </List>
+
+        <footer>
+            <OverflowToolbar>
+                <Label 
+                    text="{i18n>cartTotalPriceTitle}: "
+                    class="sapUiSmallMarginBegin"/>
+                <ObjectNumber 
+                    number="{cartView>/totalPrice}"
+                    unit="" />
+				<ToolbarSpacer/>
+				<Button
+                    press=".onProceedPress"
+                    tooltip="{i18n>ProceedBtn}"
+                    text="{i18n>ProceedBtn}"
+                    type="Emphasized"
+                    class="sapUiSmallMarginEnd"
+                    enabled="" />
+			</OverflowToolbar>
+            
+        </footer>
+    </Page>
+
+</mvc:View>

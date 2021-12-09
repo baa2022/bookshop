@@ -34,13 +34,12 @@ sap.ui.define([
                 objectId: `(${objectId})`
             };
 
-            this.navigateTo("object", {objectId: "(3b48fcc6-f5b9-4e16-9260-4bceaf8a50c3)"});
-            // this.getRouter().navTo("object", {
-            //     objectId: oEvent.getSource().getBindingContext().getPath().substring("/Books".length)
-            // });
+            this.navigateTo("object", oNavigateParams);
         },
 
-        
+        onOpenCartPress: function() {
+            this.navigateTo("cart");
+        },
 
     });
 

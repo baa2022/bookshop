@@ -103,6 +103,13 @@
                     "target": [
                         "object"
                     ]
+                },
+                {
+                    "pattern": "Cart",
+                    "name": "cart",
+                    "target": [
+                        "cart"
+                    ]
                 }
             ],
             "targets": {
@@ -117,6 +124,12 @@
                     "viewId": "object",
                     "viewLevel": 2,
                     "title": "{i18n>objectViewTitle}"
+                },
+                "cart": {
+                    "viewName": "Cart",
+                    "viewId": "cart",
+                    "viewLevel": 3,
+                    "title": "{i18n>cartViewTitle}"
                 },
                 "objectNotFound": {
                     "viewName": "ObjectNotFound",

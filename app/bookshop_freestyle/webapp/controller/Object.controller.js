@@ -74,6 +74,10 @@ sap.ui.define([
             this.showFormFragment();
         },
 
+        onOpenCartPress: function () {
+            this.navigateTo("cart");
+        }
+
     });
 
 });
