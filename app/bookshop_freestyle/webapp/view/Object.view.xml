@@ -10,19 +10,21 @@
         upperCaseAnchorBar="false">
         <uxap:headerTitle>
             <uxap:ObjectPageDynamicHeaderTitle>
-                <uxap:expandedHeading>
+                <uxap:heading>
                     <VBox>
-                        <Title text="{title}"/>
+                        <HBox alignItems="Center">
+                            <Title text="{title}"/>
+                            <ToggleButton
+                                press=".onAddToCartPress"
+                                icon="sap-icon://cart-4"
+                                type="Transparent"
+                                tooltip="{i18n>addToCartBtnTooltip}"
+                                class="sapUiTinyMarginBegin" />
+                        </HBox>
+                        
                         <Text text="{author/fullName}"/>
                     </VBox>
-                </uxap:expandedHeading>
-
-                <uxap:snappedHeading>
-                    <VBox>
-                        <Title text="{title}"/>
-                        <Text text="{author/fullName}"/>
-                    </VBox>
-                </uxap:snappedHeading>
+                </uxap:heading>
 
                 <uxap:actions>
                     <Button 

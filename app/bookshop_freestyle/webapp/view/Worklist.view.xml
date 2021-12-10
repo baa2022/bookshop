@@ -166,11 +166,24 @@
                                     icon="sap-icon://delete"
                                     type="Transparent"
                                     tooltip="{i18n>deleteBtnTooltip}"/>
-                                <Button
+                                <ToggleButton
                                     press=".onAddToCartPress"
-                                    icon="sap-icon://cart-3"
+                                    icon="sap-icon://cart-4"
                                     type="Transparent"
                                     tooltip="{i18n>addToCartBtnTooltip}" />
+
+                                <!-- <SegmentedButton>
+                                    <items>
+                                        <SegmentedButtonItem
+                                            press=".onAddToCartPress"
+                                            icon="sap-icon://cart-3"
+                                            tooltip="{i18n>addToCartBtnTooltip}" />
+                                        <SegmentedButtonItem
+                                            press=".onAddToCartPress"
+                                            icon="sap-icon://cart-4"
+                                            tooltip="{i18n>addToCartBtnTooltip}" />
+                                    </items>
+                                </SegmentedButton> -->
                             </HBox>
 						</cells>
 					</ColumnListItem>
