@@ -75,20 +75,24 @@ sap.ui.define([
             }.bind(this));
         },
 
-        readP: function (sPath, sFilter) {
+        readP: function (sPath, aFilters) {
             const oODataModel = this.getModel();
 
             return new Promise(function (resolve, reject) {
                 let mParameters = {
-                    success: oData => resolve.call(this, oData.fullName),
+                    success: oData => resolve.call(this, oData),
                     error: reject
                 }
 
-                if(sFilter) {
-                    mParameters["urlParameters"] = {
-                        "$filter": sFilter
-                    }
+                if(aFilters) {
+                    mParameters["filters"]= aFilters;
                 }
+
+                // if(sFilter) {
+                //     mParameters["urlParameters"] = {
+                //         "$filter": sFilter
+                //     }
+                // }
 
                 oODataModel.read(sPath, mParameters);
             });

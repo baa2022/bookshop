@@ -14,8 +14,10 @@ sap.ui.define([
             this.setModel(oViewModel, "cartView");
         },
         
-        authorNameFormatter: function(sAuthorID) {
-            return this.readP(`/Authors(${sAuthorID})`);
+        authorNameFormatter: async function(sAuthorID) {
+            const oAuthor = await this.readP(`/Authors(${sAuthorID})`);
+
+            return oAuthor.fullName
         },
 
         onNavButtonPress: function () {

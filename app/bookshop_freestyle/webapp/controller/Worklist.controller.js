@@ -1,7 +1,9 @@
 sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
-], function (BaseController, JSONModel, ) {
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+], function (BaseController, JSONModel, Filter, FilterOperator,) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Worklist", {
@@ -103,6 +105,80 @@ sap.ui.define([
                 oODataModel.submitChanges();
                 oDialog.close();
             }.bind(this));
+        },
+
+        onSearch: async function (oEvent) {
+            const oTable = this.byId("table");
+            const oBinding = oTable.getBinding("items");
+            const sQuery = oEvent.getParameter("query");
+            let aFilters = [];
+
+            if (sQuery && sQuery.length > 0) {
+                const aAuthorFilters = [new Filter({
+                    filters: [
+                        new Filter({
+                            path: "fullName",
+                            operator: FilterOperator.Contains,
+                            value1: sQuery
+                        }),
+                    ],
+                    and: false
+                })];
+                const oData = await this.readP("/Authors", aAuthorFilters);
+                const aAuthors = oData.results;
+                const aAuhorsID = aAuthors.map(author => author.ID);
+
+                let filters = [
+                    new Filter({
+                        path: "title",
+                        operator: FilterOperator.Contains,
+                        value1: sQuery
+                    }),
+                    new Filter({
+                        path: "genre_title",
+                        operator: FilterOperator.Contains,
+                        value1: sQuery
+                    })
+                ];
+
+                if (!isNaN(sQuery)) {
+                    filters.push(
+                        new Filter({
+                            path: "stock",
+                            operator: FilterOperator.EQ,
+                            value1: sQuery
+                        }));
+                    filters.push(
+                        new Filter({
+                            path: "price",
+                            operator: FilterOperator.EQ,
+                            value1: sQuery
+                        }));
+                    filters.push(
+                        new Filter({
+                            path: "rating",
+                            operator: FilterOperator.EQ,
+                            value1: sQuery
+                        }));
+                }
+
+                if (aAuhorsID.length > 0) {
+                    aAuhorsID.forEach(function (ID) {
+                        filters.push(
+                            new Filter({
+                                path: "author_ID",
+                                operator: FilterOperator.EQ,
+                                value1: ID
+                            }));
+                    });
+                }
+
+                aFilters = new Filter({
+                    filters
+                });
+            }
+
+            oBinding.filter(aFilters);
         },
 
     });
