@@ -142,7 +142,9 @@
 						press=".onPress">
 						<cells>
 							<Text
-								text="{title}"/>
+								text="{title}"
+								tooltip="{title}"
+                                maxLines="2"/>
 							<Text
 								text="{author/fullName}"
                                 id="authorFullName"/>
