@@ -1,0 +1,128 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+	<Dialog
+        id="createBookDialog"
+		title="{i18n>createBookDialogHeading}">
+		<form:SimpleForm
+            validateFieldGroup=".onValidateControl">
+            <Label
+                text="{i18n>bookTitleLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'title',
+                    type: 'sap.ui.model.type.String',
+                        constraints: {
+                            minLength: 3,
+                            maxLength: 100
+                    }
+                }"
+                placeholder="{i18n>CreateBookTitlePlaceholder}"
+                fieldGroupIds="createBookDialogControls" />
+            <Label
+                text="{i18n>AuthorLabel}"
+                labelFor="author"
+                required="true"/>
+            <ActionSelect
+                id="author"
+                buttons="addAuthorBtn"
+                items="{
+					path: '/Authors',
+					sorter: {
+						path: 'creationDateTime',
+						descending: true
+					}
+				}"
+                selectedKey="{author}">
+                <items>
+                    <core:Item 
+                        key="{ID}" 
+                        text="{fullName}" />
+                </items>
+                <dependents>
+                    <Button
+                        id="addAuthorBtn"
+                        text="Add new author" 
+                        press=".onCreateAuthorPress" />
+                </dependents>
+            </ActionSelect>
+            <Label
+                text="{i18n>GenreLabel}"
+                labelFor="genreFormItem"
+                required="true"/>
+            <Select
+                id="genre"
+				items="{/Genres}"
+                selectedKey="{genre}">
+                <core:Item 
+                    key="{title}"
+                    text="{title}" />
+            </Select>
+            <Label
+                text="{i18n>StockLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'stock',
+                    type: 'sap.ui.model.type.Integer',
+                    constraints: {
+                        minimum: 0,
+                        maximum: 1000000
+                    }
+                }"
+                type="Number"
+                placeholder="{i18n>CreateBookStockPlaceholder}"
+                fieldGroupIds="createBookDialogControls" />
+            <Label
+                text="{i18n>PriceLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'price',
+                    type: 'sap.ui.model.type.Integer',
+                    constraints: {
+                        minimum: 0,
+                        maximum: 1000000
+                    }
+                }"
+                type="Number"
+                placeholder="{i18n>CreateBookPricePlaceholder}"
+                description="{i18n>priceUnit}"
+                fieldGroupIds="createBookDialogControls" />
+            <Label
+                text="{i18n>RatingLabel}"
+                required="true"/>
+            <RatingIndicator
+                id="ratingIndicator"
+                value="{rating}"
+                editable="true"
+                change=".onValidateRatingIndicator" />
+            <Label
+                text="{i18n>DescriptionLabel}"
+                required="true"/>
+            <TextArea
+                value="{
+                    path: 'descr',
+                    type: 'sap.ui.model.type.String',
+                        constraints: {
+                            maxLength: 500
+                    }
+                }"
+                placeholder="{i18n>CreateBookDescrPlaceholder}"
+                fieldGroupIds="createBookDialogControls"
+                rows="3"
+                valueLiveUpdate="true" />
+        </form:SimpleForm>
+
+        <buttons>
+			<Button 
+                text="{i18n>createBtnText}"
+                press=".onCreateBookPress" />
+			<Button 
+                text="{i18n>cancelBtnText}"
+                press=".onCancelPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

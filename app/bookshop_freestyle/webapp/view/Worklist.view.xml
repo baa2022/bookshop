@@ -197,7 +197,7 @@
 
 		<semantic:footerCustomActions>
 			<Button
-                press=".onCreateBookPress"
+                press=".onOpenBookDialogPress"
                 icon="sap-icon://add"
 				text="{i18n>createBtnText}"
                 tooltip="{i18n>createBtnTooltip}"/>

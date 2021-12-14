@@ -69,6 +69,42 @@ sap.ui.define([
             oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
 
+        onOpenBookDialogPress: function() {
+            const oView = this.getView();
+            const oODataModel = oView.getModel();
+            const oEntryCtx = oODataModel.createEntry("/Books");
+
+            if (!this.pBookDialog) {
+                this.pBookDialog = this.loadFragment({
+                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.CreateBook"
+                });
+
+                this.pBookDialog.then(oDialog => oView.addDependent(oDialog));
+            }
+
+            this.pBookDialog.then(function (oDialog) {
+                oDialog.setBindingContext(oEntryCtx);
+                oDialog.setModel(oODataModel);
+                oDialog.open();
+            });
+        },
+
+        onCreateBookPress: function() {
+            this.pBookDialog.then(function (oDialog) {
+                const oView = this.getView();
+                const oODataModel = oView.getModel();
+                const oCtx = oDialog.getBindingContext();
+                const sPath = oCtx.getPath();
+                const sID = this.byId("author").getSelectedItem().getKey();
+                const sGenre = this.byId("genre").getSelectedItem().getKey();
+
+                oODataModel.setProperty(`${sPath}/author_ID`, sID);
+                oODataModel.setProperty(`${sPath}/genre_title`, sGenre);
+                oODataModel.submitChanges();
+                oDialog.close();
+            }.bind(this));
+        },
+
     });
 
 });
