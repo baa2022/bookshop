@@ -170,20 +170,8 @@
                                     press=".onAddToCartPress"
                                     icon="sap-icon://cart-4"
                                     type="Transparent"
-                                    tooltip="{i18n>addToCartBtnTooltip}" />
-
-                                <!-- <SegmentedButton>
-                                    <items>
-                                        <SegmentedButtonItem
-                                            press=".onAddToCartPress"
-                                            icon="sap-icon://cart-3"
-                                            tooltip="{i18n>addToCartBtnTooltip}" />
-                                        <SegmentedButtonItem
-                                            press=".onAddToCartPress"
-                                            icon="sap-icon://cart-4"
-                                            tooltip="{i18n>addToCartBtnTooltip}" />
-                                    </items>
-                                </SegmentedButton> -->
+                                    tooltip="{i18n>addToCartBtnTooltip}"
+                                    fieldGroupIds="toggleButton" />
                             </HBox>
 						</cells>
 					</ColumnListItem>
@@ -197,6 +185,11 @@
                 icon="sap-icon://cart"
                 press=".onOpenCartPress"
                 tooltip="{i18n>openCartBtnTooltip}">
+                <customData>
+					<BadgeCustomData
+						key="{cart>/booksInCart}"
+						value="{cart>/booksInCart}" />
+				</customData>
             </OverflowToolbarButton>
 		</semantic:titleCustomIconActions>
 

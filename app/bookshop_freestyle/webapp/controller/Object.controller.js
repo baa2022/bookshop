@@ -15,13 +15,13 @@ sap.ui.define([
             });
 
             this.setModel(oViewModel, "objectView");
-            this.getRouter().getRoute("object").attachPatternMatched(this.onObjectMatched, this);
+            this.getRouter().getRoute("object").attachPatternMatched(this.onPatternMatched, this);
 
             this._oFragmentsMap = this.createFragmentsMap();
             this.showFormFragment();
         },
 
-        onObjectMatched: function (oEvent) {
+        onPatternMatched: function (oEvent) {
             const sObjectId = oEvent.getParameter("arguments").objectId;
             this.bindView("/Books" + sObjectId);
         },
@@ -31,6 +31,12 @@ sap.ui.define([
                 path: sObjectPath,
                 parameters: {
                     expand: 'author'
+                },
+                events: {
+                    dataReceived: function () {
+                        const aControls = this.getAddToCartBtns();
+                        this.setPressedStateOfToggleBtn.call(this, aControls);
+                    }.bind(this)
                 }
             });
         },
@@ -76,7 +82,25 @@ sap.ui.define([
 
         onOpenCartPress: function () {
             this.navigateTo("cart");
-        }
+        },
+
+        onAddToCartPress: function (oEvent) {
+            const oSourceControl = oEvent.getSource();
+            const oCtx = oSourceControl.getBindingContext();
+            const sBookID = oCtx.getObject("ID");
+            const oCartModel = this.getModel("cart");
+            const isBookInCart = this.isBookInCart(sBookID);
+
+            if (isBookInCart) {
+                this.removeBookFromCart(sBookID);
+
+            }
+            else {
+                this.addBookToCart(oCtx.getObject());
+            }
+
+            oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
+        },
 
     });
 

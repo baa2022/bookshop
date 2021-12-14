@@ -18,6 +18,10 @@
                     "localUri": "localService/v2/metadata.xml",
                     "odataVersion": "2.0"
                 }
+            },
+            "cartService": {
+                "uri": "model/cart.json",
+                "type": "JSON"
             }
         }
     },
@@ -70,6 +74,10 @@
                     "groupId": "$direct",
                     "useBatch": false
                 }
+            },
+            "cart": {
+                "dataSource": "cartService",
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
         "resources": {

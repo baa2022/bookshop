@@ -15,10 +15,42 @@
         navButtonPress=".onNavButtonPress">
         <List
             id="storesList"
-            items=""
+            items="{cart>/cart}"
             mode="Delete"
             delete=".onDeletePress"
             noDataText="{i18n>cartEmptyCartText}">
+            <CustomListItem
+                highlightText="{cart>title}">
+                <HBox 
+                    justifyContent="SpaceBetween" 
+                    alignItems="Center"
+                    class="sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBottom sapUiMediumMarginBegin">
+                    <VBox>
+                        <Title
+                            text="{cart>title}"
+                            level="H1" />
+                        <ObjectAttribute 
+                            text="{
+                                path : 'cart>author_ID',
+                                formatter : '.authorNameFormatter'
+                            }" />
+                        <StepInput
+                            min="1"
+                            max="{cart>stock}"
+                            width="100px"
+                            step="1"
+                            textAlign="Center"
+                            change=".onStepInputValueChange"
+                            class="sapUiSmallMarginTop"
+                            fieldGroupIds="stepInputs" />
+                    </VBox>
+                    <VBox>
+                        <ObjectNumber 
+                            number="{cart>price}"
+                            unit="{i18n>priceUnit}" />
+                    </VBox>
+                </HBox>
+            </CustomListItem >
         </List>
 
         <footer>
@@ -27,7 +59,7 @@
                     text="{i18n>cartTotalPriceTitle}: "
                     class="sapUiSmallMarginBegin"/>
                 <ObjectNumber 
-                    number="{cartView>/totalPrice}"
+                    number="{cart>/totalPrice}"
                     unit="" />
 				<ToolbarSpacer/>
 				<Button

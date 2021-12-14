@@ -1,7 +1,7 @@
 sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
-], function (BaseController, JSONModel,) {
+], function (BaseController, JSONModel, ) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Worklist", {
@@ -9,17 +9,27 @@ sap.ui.define([
         onInit: function () {
             const oViewModel = new JSONModel({
                 worklistTableTitle: this.getResourceBundle().getText("worklistTableTitle"),
-                tableNoDataText: this.getResourceBundle().getText("tableNoDataText")
+                tableNoDataText: this.getResourceBundle().getText("tableNoDataText"),
             });
-            
+
             this.setModel(oViewModel, "worklistView");
+
+            this.getRouter().getRoute("worklist").attachPatternMatched(this.onPatternMatched, this);
+        },
+
+        onPatternMatched: function () {
+            const aControls = this.getAddToCartBtns();
+
+            if (aControls.length > 0) {
+                this.setPressedStateOfToggleBtn(aControls);
+            }
         },
 
         onUpdateFinished: function (oEvent) {
             const oTable = oEvent.getSource();
             const iTotalItems = oEvent.getParameter("total");
             let sTitle;
-            
+
             if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
                 sTitle = this.getResourceBundle().getText("worklistTableTitleCount", [iTotalItems]);
             } else {
@@ -37,8 +47,26 @@ sap.ui.define([
             this.navigateTo("object", oNavigateParams);
         },
 
-        onOpenCartPress: function() {
+        onOpenCartPress: function () {
             this.navigateTo("cart");
+        },
+
+        onAddToCartPress: function (oEvent) {
+            const oSourceControl = oEvent.getSource();
+            const oCtx = oSourceControl.getBindingContext();
+            const sBookID = oCtx.getObject("ID");
+            const oCartModel = this.getModel("cart");
+            const isBookInCart = this.isBookInCart(sBookID);
+
+            if (isBookInCart) {
+                this.removeBookFromCart(sBookID);
+
+            }
+            else {
+                this.addBookToCart(oCtx.getObject());
+            }
+
+            oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
 
     });

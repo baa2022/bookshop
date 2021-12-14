@@ -13,6 +13,10 @@ sap.ui.define([
 
             this.setModel(oViewModel, "cartView");
         },
+        
+        authorNameFormatter: function(sAuthorID) {
+            return this.readP(`/Authors(${sAuthorID})`);
+        },
 
         onNavButtonPress: function () {
             const oHistory = History.getInstance();
