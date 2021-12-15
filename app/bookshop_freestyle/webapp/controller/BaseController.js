@@ -37,9 +37,9 @@ sap.ui.define([
 
         isBookInCart: function (sID) {
             const oCartModel = this.getModel("cart");
-            const aCartEntries = oCartModel.getProperty("/cart");
+            const aCartBooks = oCartModel.getProperty("/cart");
 
-            return aCartEntries.find(oBook => oBook.ID === sID);
+            return aCartBooks.find(oBook => oBook.ID === sID);
         },
 
         addBookToCart: function (oBook) {
@@ -53,19 +53,19 @@ sap.ui.define([
 
         removeBookFromCart: function (sID) {
             const oCartModel = this.getModel("cart");
-            const aCartEntries = oCartModel.getProperty("/cart");
-            const index = aCartEntries.findIndex(oBook => oBook.ID === sID)
+            const aCartBooks = oCartModel.getProperty("/cart");
+            const index = aCartBooks.findIndex(oBook => oBook.ID === sID)
 
-            aCartEntries.splice(index, 1)
-            oCartModel.setProperty("/cart", aCartEntries);
+            aCartBooks.splice(index, 1)
+            oCartModel.setProperty("/cart", aCartBooks);
             oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
 
         getItemsCountInCart: function () {
             const oCartModel = this.getModel("cart");
-            const aCartEntries = oCartModel.getProperty("/cart");
+            const aCartBooks = oCartModel.getProperty("/cart");
 
-            return aCartEntries.length;
+            return aCartBooks.length;
         },
 
         getAddToCartBtns: function () {

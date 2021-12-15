@@ -10,11 +10,14 @@ sap.ui.define([
         formatter: formatter,
 
         onInit: function () {
-            const oViewModel = new JSONModel({
-                totalPrice: 0,
-            });
+            const oComponent = this.getOwnerComponent();
+            const oRouter = oComponent.getRouter();
 
-            this.setModel(oViewModel, "cartView");
+            oRouter.getRoute("cart").attachPatternMatched(this.onPatternMatched, this);
+        },
+
+        onPatternMatched: function () {
+            this.countTotalPrice();
         },
 
         onNavButtonPress: function () {
@@ -30,6 +33,29 @@ sap.ui.define([
             const sID = oCtx.getObject("ID");
 
             this.removeBookFromCart(sID);
+        },
+
+        onStepInputValueChange: function (oEvent) {
+            const oSourceControl = oEvent.getSource();
+            const nValue = oSourceControl.getValue();
+            const oCtx = oSourceControl.getBindingContext("cart");
+            const nStock = oCtx.getObject("stock");
+            const iTotalValue = nValue > nStock ? nStock : nValue;
+
+            oSourceControl.setValue(iTotalValue);
+            this.countTotalPrice();
+        },
+
+        countTotalPrice: function () {
+            const oCartModel = this.getModel("cart");
+            const aControls = this.getView().getControlsByFieldGroupId("stepInput").filter(control => control.isA("sap.m.StepInput"));
+            const aCartBooks = oCartModel.getProperty("/cart");
+            const aBooksCount = aControls.map(control => control.getValue());
+            const iTotalPrice = aCartBooks.reduce(function (totalPrice, oBook, index) {
+                return totalPrice + (oBook.price * aBooksCount[index]);
+            }.bind(this), 0);
+
+            oCartModel.setProperty("/totalPrice", iTotalPrice);
         },
     });
 

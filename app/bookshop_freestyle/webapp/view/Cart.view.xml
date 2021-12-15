@@ -42,7 +42,7 @@
                             textAlign="Center"
                             change=".onStepInputValueChange"
                             class="sapUiSmallMarginTop"
-                            fieldGroupIds="stepInputs" />
+                            fieldGroupIds="stepInput" />
                     </VBox>
                     <VBox>
                         <ObjectNumber 
