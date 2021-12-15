@@ -63,7 +63,7 @@ sap.ui.define([
 
         clearCart: function() {
             const oCartModel = this.getModel("cart");
-            
+
             oCartModel.setProperty("/cart", []);
         },
 
@@ -131,6 +131,10 @@ sap.ui.define([
 
             const oData = await this.readP("/Orders_items", aFilters);
             oData.results.forEach(oOrder => oODataModel.remove(`/Orders(${oOrder.up__ID})`));
+        },
+
+        closeDialog: function (oDialog) {
+            oDialog.close();
         },
 
     })

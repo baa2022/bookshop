@@ -1,9 +1,8 @@
 sap.ui.define([
     "./BaseController",
     "../model/formatter",
-    "sap/ui/model/json/JSONModel",
 	"sap/ui/core/routing/History",
-], function (BaseController, formatter, JSONModel, History,) {
+], function (BaseController, formatter, History,) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Cart", {
@@ -98,7 +97,10 @@ sap.ui.define([
             });
         },
 
-        
+        onCancelPress: function(oEvent) {
+            const oDialog = oEvent.getSource().getParent();
+            this.closeDialog(oDialog);
+        },
     });
 
 });

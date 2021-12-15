@@ -217,6 +217,11 @@ sap.ui.define([
             this.onAfterDeletePress(oCtx);
         },
 
+        onCancelPress: function(oEvent) {
+            const oDialog = oEvent.getSource().getParent();
+            this.closeDialog(oDialog);
+        },
+
 
 
     });
