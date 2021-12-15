@@ -6,7 +6,7 @@
         id="createBookDialog"
 		title="{i18n>createBookDialogHeading}">
 		<form:SimpleForm
-            validateFieldGroup=".onValidateControl">
+            validateFieldGroup=".onValidate">
             <Label
                 text="{i18n>bookTitleLabel}"
                 required="true"/>
@@ -20,7 +20,7 @@
                     }
                 }"
                 placeholder="{i18n>CreateBookTitlePlaceholder}"
-                fieldGroupIds="createBookDialogControls" />
+                fieldGroupIds="bookDialogControls" />
             <Label
                 text="{i18n>AuthorLabel}"
                 labelFor="author"
@@ -74,7 +74,7 @@
                 }"
                 type="Number"
                 placeholder="{i18n>CreateBookStockPlaceholder}"
-                fieldGroupIds="createBookDialogControls" />
+                fieldGroupIds="bookDialogControls" />
             <Label
                 text="{i18n>PriceLabel}"
                 required="true"/>
@@ -90,7 +90,7 @@
                 type="Number"
                 placeholder="{i18n>CreateBookPricePlaceholder}"
                 description="{i18n>priceUnit}"
-                fieldGroupIds="createBookDialogControls" />
+                fieldGroupIds="bookDialogControls" />
             <Label
                 text="{i18n>RatingLabel}"
                 required="true"/>
@@ -111,7 +111,7 @@
                     }
                 }"
                 placeholder="{i18n>CreateBookDescrPlaceholder}"
-                fieldGroupIds="createBookDialogControls"
+                fieldGroupIds="bookDialogControls"
                 rows="3"
                 valueLiveUpdate="true" />
         </form:SimpleForm>

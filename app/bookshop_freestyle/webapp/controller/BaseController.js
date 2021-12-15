@@ -133,8 +133,49 @@ sap.ui.define([
             oData.results.forEach(oOrder => oODataModel.remove(`/Orders(${oOrder.up__ID})`));
         },
 
-        closeDialog: function (oDialog) {
+        closeDialog: function (oDialog, sFieldGroupId) {
             oDialog.close();
+            this.afterDialogClose(sFieldGroupId);
+        },
+
+        afterDialogClose: function (sFieldGroupId) {
+            const sValueState = "None";
+            const aControls = this.getView().getControlsByFieldGroupId(sFieldGroupId).filter(function (oControl) {
+                if (oControl.isA("sap.m.Input") || oControl.isA("sap.m.TextArea")) {
+                    return oControl;
+                }
+            });
+
+            aControls.forEach(oControl => oControl.setValueState(sValueState));
+        },
+
+        validateValue: function (oControl) {
+            const oBinding = oControl.getBinding("value");
+            let sValueState = "None";
+            let bValidationError = false;
+
+            try {
+                if (oControl.getValue().trim().length < 1) {
+                    throw new Error;
+                }
+
+                oBinding.getType().validateValue(oControl.getValue());
+            } catch (oException) {
+                sValueState = "Error";
+                bValidationError = true;
+            }
+
+            oControl.setValueState(sValueState);
+
+            return bValidationError;
+        },
+
+        validateRatingIndicator: function (oControl) {
+            if (oControl.getValue() < 1) {
+                return true;
+            }
+
+            return false;
         },
 
     })

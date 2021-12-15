@@ -64,6 +64,7 @@ sap.ui.define([
             const oView = this.getView();
             const oODataModel = oView.getModel();
             const oEntryCtx = oODataModel.createEntry("/Books");
+            const oMessageManager = sap.ui.getCore().getMessageManager();
 
             if (!this.pBookDialog) {
                 this.pBookDialog = this.loadFragment({
@@ -74,6 +75,8 @@ sap.ui.define([
             }
 
             this.pBookDialog.then(function (oDialog) {
+                oMessageManager.registerObject(oView, true);
+
                 oDialog.setBindingContext(oEntryCtx);
                 oDialog.setModel(oODataModel);
                 oDialog.open();
@@ -88,6 +91,21 @@ sap.ui.define([
                 const sPath = oCtx.getPath();
                 const sID = this.byId("author").getSelectedItem().getKey();
                 const sGenre = this.byId("genre").getSelectedItem().getKey();
+                const aControls = oView.getControlsByFieldGroupId("bookDialogControls").filter(function (oControl) {
+                    if (oControl.isA("sap.m.Input") || oControl.isA("sap.m.TextArea")) {
+                        return oControl;
+                    }
+                });
+                const bRatingError = this.validateRatingIndicator(this.byId("ratingIndicator"));
+                let bValidationError = false;
+
+                aControls.forEach(function (oControl) {
+                    bValidationError = this.validateValue(oControl) || bValidationError;
+                }, this);
+
+                if (bValidationError || bRatingError) {
+                    return;
+                }
 
                 oODataModel.setProperty(`${sPath}/author_ID`, sID);
                 oODataModel.setProperty(`${sPath}/genre_title`, sGenre);
@@ -100,7 +118,6 @@ sap.ui.define([
             const oTable = this.byId("table");
             const oBinding = oTable.getBinding("items");
             const sQuery = oEvent.getParameter("query");
-            let aFilters = [];
 
             if (sQuery && sQuery.length > 0) {
                 const aAuthorFilters = [new Filter({
@@ -217,12 +234,18 @@ sap.ui.define([
             this.onAfterDeletePress(oCtx);
         },
 
-        onCancelPress: function(oEvent) {
+        onCancelPress: function (oEvent) {
             const oDialog = oEvent.getSource().getParent();
             this.closeDialog(oDialog);
         },
 
+        onValidate: function (oEvent) {
+            this.validateValue(oEvent.getSource());
+        },
 
+        onValidateRatingIndicator: function (oEvent) {
+            this.validateRatingIndicator(oEvent.getSource());
+        },
 
     });
 
