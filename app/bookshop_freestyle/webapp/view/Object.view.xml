@@ -6,7 +6,9 @@
     xmlns:form="sap.ui.layout.form">
 
     <uxap:ObjectPageLayout
-        upperCaseAnchorBar="false">
+        upperCaseAnchorBar="false"
+        showFooter="{objectView>/isEditingMode}"
+        id="objectPageLayout">
         <uxap:headerTitle>
             <uxap:ObjectPageDynamicHeaderTitle>
                 <uxap:heading>
@@ -19,7 +21,8 @@
                                 type="Transparent"
                                 tooltip="{i18n>addToCartBtnTooltip}"
                                 class="sapUiTinyMarginBegin"
-                                fieldGroupIds="toggleButton" />
+                                fieldGroupIds="toggleButton"
+                                visible="{= ${objectView>/isEditingMode} === false}" />
                         </HBox>
                         
                         <Text text="{author/fullName}"/>
@@ -31,17 +34,20 @@
                         text="{i18n>editBtnText}"
                         tooltip="{i18n>editBtnTooltip}"
                         type="Emphasized"
-                        press=".onEditBookPress"/>
+                        press=".onEditBookPress"
+                        visible="{= ${objectView>/isEditingMode} === false}" />
 					<Button 
                         text="{i18n>deleteBtnText}"
                         tooltip="{i18n>deleteBtnTooltip}"
-                        type="Transparent" />
+                        type="Default"
+                        visible="{= ${objectView>/isEditingMode} === false}" />
                     <OverflowToolbarButton
                         id="openCart"
                         icon="sap-icon://cart"
                         press=".onOpenCartPress"
                         tooltip="{i18n>openCartBtnTooltip}"
-                        type="Transparent">
+                        type="Transparent"
+                        enabled="{= ${objectView>/isEditingMode} === false}">
                         <customData>
                             <BadgeCustomData
                                 key="{cart>/booksInCart}"
@@ -155,6 +161,19 @@
                 </uxap:ObjectPageSubSection>
             </uxap:ObjectPageSection>
         </uxap:sections>
+
+        <uxap:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />
+				<Button 
+                    type="Emphasized" 
+                    text="{i18n>saveBtnText}"/>
+				<Button 
+                    type="Transparent" 
+                    text="{i18n>cancelBtnText}"
+                    press=".onCancelPress" />
+			</OverflowToolbar>
+		</uxap:footer>
 
     </uxap:ObjectPageLayout>
 </mvc:View>

@@ -11,7 +11,7 @@ sap.ui.define([
         onInit: function () {
             const oViewModel = new JSONModel({
                 isEditingMode: false,
-                sortStateOrder: 0
+                sortStateOrder: 0,
             });
 
             this.setModel(oViewModel, "objectView");
@@ -74,9 +74,9 @@ sap.ui.define([
 
         onEditBookPress: function () {
             const oViewModel = this.getModel("objectView");
-            const isEditingMode = oViewModel.getProperty("/isEditingMode");
+            const bIsEditingMode = oViewModel.getProperty("/isEditingMode");
 
-            oViewModel.setProperty("/isEditingMode", !isEditingMode);
+            oViewModel.setProperty("/isEditingMode", !bIsEditingMode);
             this.showFormFragment();
         },
 
@@ -101,6 +101,19 @@ sap.ui.define([
 
             oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
+
+        onCancelPress: function() {
+            this.discardChanges();
+        },
+
+        discardChanges: function() {
+            const oODataModel = this.getModel();
+            const oViewModel = this.getModel("objectView");
+
+            oViewModel.setProperty("/isEditingMode", false);
+            oODataModel.resetChanges();
+            this.showFormFragment();
+        }
 
     });
 

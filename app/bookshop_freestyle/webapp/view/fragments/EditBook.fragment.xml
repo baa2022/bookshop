@@ -52,7 +52,7 @@
             required="true" />
         <Select
 			items="{/Genres}"
-            selectedKey="{genre}">
+            selectedKey="{genre_title}">
             <core:Item 
                 text="{title}"
                 key="{title}" />
