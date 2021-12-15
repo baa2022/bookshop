@@ -4,7 +4,7 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/Sorter",
-], function (BaseController, JSONModel, Filter, FilterOperator, Sorter,) {
+], function (BaseController, JSONModel, Filter, FilterOperator, Sorter, ) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Worklist", {
@@ -55,24 +55,12 @@ sap.ui.define([
         },
 
         onAddToCartPress: function (oEvent) {
-            const oSourceControl = oEvent.getSource();
-            const oCtx = oSourceControl.getBindingContext();
-            const sBookID = oCtx.getObject("ID");
-            const oCartModel = this.getModel("cart");
-            const isBookInCart = this.isBookInCart(sBookID);
+            const oCtx = oEvent.getSource().getBindingContext();
 
-            if (isBookInCart) {
-                this.removeBookFromCart(sBookID);
-
-            }
-            else {
-                this.addBookToCart(oCtx.getObject());
-            }
-
-            oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
+            this.onAfterAddToCartPress(oCtx);
         },
 
-        onOpenBookDialogPress: function() {
+        onOpenBookDialogPress: function () {
             const oView = this.getView();
             const oODataModel = oView.getModel();
             const oEntryCtx = oODataModel.createEntry("/Books");
@@ -92,7 +80,7 @@ sap.ui.define([
             });
         },
 
-        onCreateBookPress: function() {
+        onCreateBookPress: function () {
             this.pBookDialog.then(function (oDialog) {
                 const oView = this.getView();
                 const oODataModel = oView.getModel();
@@ -129,7 +117,7 @@ sap.ui.define([
                 const aAuthors = oData.results;
                 const aAuhorsID = aAuthors.map(author => author.ID);
 
-                let filters = [
+                let aFilters = [
                     new Filter({
                         path: "title",
                         operator: FilterOperator.Contains,
@@ -143,19 +131,19 @@ sap.ui.define([
                 ];
 
                 if (!isNaN(sQuery)) {
-                    filters.push(
+                    aFilters.push(
                         new Filter({
                             path: "stock",
                             operator: FilterOperator.EQ,
                             value1: sQuery
                         }));
-                    filters.push(
+                    aFilters.push(
                         new Filter({
                             path: "price",
                             operator: FilterOperator.EQ,
                             value1: sQuery
                         }));
-                    filters.push(
+                    aFilters.push(
                         new Filter({
                             path: "rating",
                             operator: FilterOperator.EQ,
@@ -165,7 +153,7 @@ sap.ui.define([
 
                 if (aAuhorsID.length > 0) {
                     aAuhorsID.forEach(function (ID) {
-                        filters.push(
+                        aFilters.push(
                             new Filter({
                                 path: "author_ID",
                                 operator: FilterOperator.EQ,
@@ -174,12 +162,12 @@ sap.ui.define([
                     });
                 }
 
-                aFilters = new Filter({
-                    filters
+                aQueryFilters = new Filter({
+                    aFilters
                 });
             }
 
-            oBinding.filter(aFilters);
+            oBinding.filter(aQueryFilters);
         },
 
         onSortPress: function (oEvent, sPath) {
@@ -187,17 +175,17 @@ sap.ui.define([
             const oSourceControl = oEvent.getSource();
             const oBinding = this.byId("table").getBinding("items");
             const aSortStates = [{
-                    iconStateName: "sap-icon://sort",
-                    logicalSortState: undefined
-                },
-                {
-                    iconStateName: "sap-icon://sort-ascending",
-                    logicalSortState: false
-                },
-                {
-                    iconStateName: "sap-icon://sort-descending",
-                    logicalSortState: true
-                },
+                iconStateName: "sap-icon://sort",
+                logicalSortState: undefined
+            },
+            {
+                iconStateName: "sap-icon://sort-ascending",
+                logicalSortState: false
+            },
+            {
+                iconStateName: "sap-icon://sort-descending",
+                logicalSortState: true
+            },
             ];
             let oSortedColBtn = oViewModel.getProperty("/sortedColBtn");
             let nSortStateOrder = 1;
@@ -222,6 +210,14 @@ sap.ui.define([
 
             oBinding.sort(sOrder !== undefined ? oSorter : undefined);
         },
+
+        onDeletePress: function (oEvent) {
+            const oCtx = oEvent.getSource().getBindingContext();
+
+            this.onAfterDeletePress(oCtx);
+        },
+
+
 
     });
 

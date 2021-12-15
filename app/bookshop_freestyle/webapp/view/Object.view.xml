@@ -16,13 +16,13 @@
                         <HBox alignItems="Center">
                             <Title text="{title}"/>
                             <ToggleButton
-                                press=".onAddToCartPress"
                                 icon="sap-icon://cart-4"
                                 type="Transparent"
                                 tooltip="{i18n>addToCartBtnTooltip}"
                                 class="sapUiTinyMarginBegin"
                                 fieldGroupIds="toggleButton"
-                                visible="{= ${objectView>/isEditingMode} === false}" />
+                                visible="{= ${objectView>/isEditingMode} === false}"
+                                press=".onAddToCartPress" />
                         </HBox>
                         
                         <Text text="{author/fullName}"/>
@@ -34,20 +34,21 @@
                         text="{i18n>editBtnText}"
                         tooltip="{i18n>editBtnTooltip}"
                         type="Emphasized"
-                        press=".onEditBookPress"
-                        visible="{= ${objectView>/isEditingMode} === false}" />
+                        visible="{= ${objectView>/isEditingMode} === false}"
+                        press=".onEditBookPress" />
 					<Button 
                         text="{i18n>deleteBtnText}"
                         tooltip="{i18n>deleteBtnTooltip}"
                         type="Default"
-                        visible="{= ${objectView>/isEditingMode} === false}" />
+                        visible="{= ${objectView>/isEditingMode} === false}"
+                        press=".onDeletePress" />
                     <OverflowToolbarButton
                         id="openCart"
                         icon="sap-icon://cart"
-                        press=".onOpenCartPress"
                         tooltip="{i18n>openCartBtnTooltip}"
                         type="Transparent"
-                        enabled="{= ${objectView>/isEditingMode} === false}">
+                        enabled="{= ${objectView>/isEditingMode} === false}"
+                        press=".onOpenCartPress">
                         <customData>
                             <BadgeCustomData
                                 key="{cart>/booksInCart}"

@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
-    "sap/m/library"
-], function (Controller, UIComponent, ) {
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+], function (Controller, UIComponent, Filter, FilterOperator,) {
     "use strict";
 
     return Controller.extend("bookshop.freestyle.bookshopfreestyle.controller.BaseController", {
@@ -27,6 +28,13 @@ sap.ui.define([
             this.getOwnerComponent().getRouter().navTo(sName, oParameters);
         },
 
+        onAfterAddToCartPress: function (oCtx) {
+            const oBook = oCtx.getObject();
+            const isBookInCart = this.isBookInCart(oBook.ID);
+
+            isBookInCart ? this.removeBookFromCart(oBook.ID) : this.addBookToCart(oBook);
+        },
+
         isBookInCart: function (sID) {
             const oCartModel = this.getModel("cart");
             const aCartEntries = oCartModel.getProperty("/cart");
@@ -40,15 +48,17 @@ sap.ui.define([
 
             aCart.push(oBook);
             oCartModel.setProperty("/cart", aCart);
+            oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
 
         removeBookFromCart: function (sID) {
             const oCartModel = this.getModel("cart");
-
             const aCartEntries = oCartModel.getProperty("/cart");
             const index = aCartEntries.findIndex(oBook => oBook.ID === sID)
+
             aCartEntries.splice(index, 1)
             oCartModel.setProperty("/cart", aCartEntries);
+            oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
 
         getItemsCountInCart: function () {
@@ -84,18 +94,37 @@ sap.ui.define([
                     error: reject
                 }
 
-                if(aFilters) {
-                    mParameters["filters"]= aFilters;
+                if (aFilters) {
+                    mParameters["filters"] = aFilters;
                 }
-
-                // if(sFilter) {
-                //     mParameters["urlParameters"] = {
-                //         "$filter": sFilter
-                //     }
-                // }
 
                 oODataModel.read(sPath, mParameters);
             });
+        },
+
+        onAfterDeletePress: function (oCtx) {
+            const oODataModel = this.getModel();
+            const oBook = oCtx.getObject();
+            const sKey = oODataModel.createKey("/Books", oBook);
+
+            this.deleteBook(sKey, oBook.ID);
+            this.removeBookFromCart(oBook.ID);
+        },
+
+        deleteBook: async function (sKey, sBookID) {
+            const oODataModel = this.getModel();
+            const aFilters = [
+                new Filter({
+                    path: "book_ID",
+                    operator: FilterOperator.EQ,
+                    value1: sBookID
+                })
+            ];
+
+            await oODataModel.remove(sKey);
+
+            const oData = await this.readP("/Orders_items", aFilters);
+            oData.results.forEach(oOrder => oODataModel.remove(`/Orders(${oOrder.up__ID})`));
         },
 
     })

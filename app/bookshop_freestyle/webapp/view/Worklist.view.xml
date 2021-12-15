@@ -84,8 +84,8 @@
                             <Button 
                                 icon="sap-icon://sort"
                                 type="Transparent"
-                                press=".onSortPress($event, 'genre_title')"
-                                tooltip="{i18n>sortBtnTooltip}" />
+                                tooltip="{i18n>sortBtnTooltip}"
+                                press=".onSortPress($event, 'genre_title')" />
                         </HBox>
 					</Column>
 					<Column 
@@ -105,8 +105,8 @@
                             <Button 
                                 icon="sap-icon://sort"
                                 type="Transparent"
-                                press=".onSortPress($event, 'price')"
-                                tooltip="{i18n>sortBtnTooltip}" />
+                                tooltip="{i18n>sortBtnTooltip}"
+                                press=".onSortPress($event, 'price')" />
                         </HBox>
 					</Column>
 					<Column
@@ -127,8 +127,8 @@
                             <Button 
                                 icon="sap-icon://sort"
                                 type="Transparent"
-                                press=".onSortPress($event, 'rating')"
-                                tooltip="{i18n>sortBtnTooltip}" />
+                                tooltip="{i18n>sortBtnTooltip}"
+                                press=".onSortPress($event, 'rating')" />
                         </HBox>
 					</Column>
 					<Column
@@ -164,16 +164,16 @@
                                 editable="false" />
                             <HBox>
                                 <Button
-                                    press=".onDeleteBookPress"
                                     icon="sap-icon://delete"
                                     type="Transparent"
-                                    tooltip="{i18n>deleteBtnTooltip}"/>
+                                    tooltip="{i18n>deleteBtnTooltip}"
+                                    press=".onDeletePress" />
                                 <ToggleButton
-                                    press=".onAddToCartPress"
                                     icon="sap-icon://cart-4"
                                     type="Transparent"
                                     tooltip="{i18n>addToCartBtnTooltip}"
-                                    fieldGroupIds="toggleButton" />
+                                    fieldGroupIds="toggleButton"
+                                    press=".onAddToCartPress" />
                             </HBox>
 						</cells>
 					</ColumnListItem>

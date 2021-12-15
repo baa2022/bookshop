@@ -1,8 +1,6 @@
 sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageBox",
-    "sap/ui/model/Sorter",
 ], function (BaseController, JSONModel) {
     "use strict";
 
@@ -85,35 +83,30 @@ sap.ui.define([
         },
 
         onAddToCartPress: function (oEvent) {
-            const oSourceControl = oEvent.getSource();
-            const oCtx = oSourceControl.getBindingContext();
-            const sBookID = oCtx.getObject("ID");
-            const oCartModel = this.getModel("cart");
-            const isBookInCart = this.isBookInCart(sBookID);
+            const oCtx = oEvent.getSource().getBindingContext();
 
-            if (isBookInCart) {
-                this.removeBookFromCart(sBookID);
-
-            }
-            else {
-                this.addBookToCart(oCtx.getObject());
-            }
-
-            oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
+            this.onAfterAddToCartPress(oCtx);
         },
 
-        onCancelPress: function() {
+        onCancelPress: function () {
             this.discardChanges();
         },
 
-        discardChanges: function() {
+        discardChanges: function () {
             const oODataModel = this.getModel();
             const oViewModel = this.getModel("objectView");
 
             oViewModel.setProperty("/isEditingMode", false);
             oODataModel.resetChanges();
             this.showFormFragment();
-        }
+        },
+
+        onDeletePress: function (oEvent) {
+            const oCtx = oEvent.getSource().getBindingContext();
+
+            this.onAfterDeletePress(oCtx);
+            this.navigateTo("worklist");
+        },
 
     });
 

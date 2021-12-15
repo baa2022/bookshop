@@ -17,8 +17,8 @@
             id="storesList"
             items="{cart>/cart}"
             mode="Delete"
-            delete=".onDeletePress"
-            noDataText="{i18n>cartEmptyCartText}">
+            noDataText="{i18n>cartEmptyCartText}"
+            delete=".onDeletePress">
             <CustomListItem
                 highlightText="{cart>title}">
                 <HBox 
@@ -63,12 +63,12 @@
                     unit="" />
 				<ToolbarSpacer/>
 				<Button
-                    press=".onProceedPress"
                     tooltip="{i18n>ProceedBtn}"
                     text="{i18n>ProceedBtn}"
                     type="Emphasized"
                     class="sapUiSmallMarginEnd"
-                    enabled="" />
+                    enabled=""
+                    press=".onProceedPress" />
 			</OverflowToolbar>
             
         </footer>
