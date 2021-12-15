@@ -72,9 +72,8 @@ sap.ui.define([
 
         onEditBookPress: function () {
             const oViewModel = this.getModel("objectView");
-            const bIsEditingMode = oViewModel.getProperty("/isEditingMode");
 
-            oViewModel.setProperty("/isEditingMode", !bIsEditingMode);
+            oViewModel.setProperty("/isEditingMode", true);
             this.showFormFragment();
         },
 
@@ -86,6 +85,15 @@ sap.ui.define([
             const oCtx = oEvent.getSource().getBindingContext();
 
             this.onAfterAddToCartPress(oCtx);
+        },
+
+        onSavePress: function() {
+            const oODataModel = this.getModel();
+            const oViewModel = this.getModel("objectView");
+
+            oViewModel.setProperty("/isEditingMode", false);
+            oODataModel.submitChanges();
+            this.showFormFragment();
         },
 
         onCancelPress: function () {

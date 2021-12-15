@@ -168,7 +168,8 @@
 				<ToolbarSpacer />
 				<Button 
                     type="Emphasized" 
-                    text="{i18n>saveBtnText}"/>
+                    text="{i18n>saveBtnText}"
+                    press=".onSavePress" />
 				<Button 
                     type="Transparent" 
                     text="{i18n>cancelBtnText}"
