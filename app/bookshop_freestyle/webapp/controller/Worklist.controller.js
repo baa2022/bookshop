@@ -3,7 +3,8 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-], function (BaseController, JSONModel, Filter, FilterOperator,) {
+    "sap/ui/model/Sorter",
+], function (BaseController, JSONModel, Filter, FilterOperator, Sorter,) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Worklist", {
@@ -179,6 +180,47 @@ sap.ui.define([
             }
 
             oBinding.filter(aFilters);
+        },
+
+        onSortPress: function (oEvent, sPath) {
+            const oViewModel = this.getModel("worklistView");
+            const oSourceControl = oEvent.getSource();
+            const oBinding = this.byId("table").getBinding("items");
+            const aSortStates = [{
+                    iconStateName: "sap-icon://sort",
+                    logicalSortState: undefined
+                },
+                {
+                    iconStateName: "sap-icon://sort-ascending",
+                    logicalSortState: false
+                },
+                {
+                    iconStateName: "sap-icon://sort-descending",
+                    logicalSortState: true
+                },
+            ];
+            let oSortedColBtn = oViewModel.getProperty("/sortedColBtn");
+            let nSortStateOrder = 1;
+
+            if (oSortedColBtn) {
+                oSortedColBtn.setIcon(aSortStates[0].iconStateName);
+
+                if (oSortedColBtn === oSourceControl) {
+                    nSortStateOrder = oViewModel.getProperty("/sortStateOrder");
+                    // if  sort Order = 2 (sort is descending), we nullify nSortStateOrder (items become unsorted)
+                    nSortStateOrder < 2 ? nSortStateOrder++ : nSortStateOrder = 0;
+                }
+            }
+
+            oSourceControl.setIcon(aSortStates[nSortStateOrder].iconStateName);
+
+            oViewModel.setProperty("/sortStateOrder", nSortStateOrder);
+            oViewModel.setProperty("/sortedColBtn", oSourceControl);
+
+            const sOrder = aSortStates[nSortStateOrder].logicalSortState;
+            const oSorter = new Sorter(sPath, sOrder);
+
+            oBinding.sort(sOrder !== undefined ? oSorter : undefined);
         },
 
     });

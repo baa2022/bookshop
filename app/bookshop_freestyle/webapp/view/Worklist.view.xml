@@ -84,7 +84,7 @@
                             <Button 
                                 icon="sap-icon://sort"
                                 type="Transparent"
-                                press=".onSortBtnPress($event, 'genre')"
+                                press=".onSortPress($event, 'genre_title')"
                                 tooltip="{i18n>sortBtnTooltip}" />
                         </HBox>
 					</Column>
@@ -105,7 +105,7 @@
                             <Button 
                                 icon="sap-icon://sort"
                                 type="Transparent"
-                                press=".onSortBtnPress($event, 'price')"
+                                press=".onSortPress($event, 'price')"
                                 tooltip="{i18n>sortBtnTooltip}" />
                         </HBox>
 					</Column>
@@ -127,7 +127,7 @@
                             <Button 
                                 icon="sap-icon://sort"
                                 type="Transparent"
-                                press=".onSortBtnPress($event, 'rating')"
+                                press=".onSortPress($event, 'rating')"
                                 tooltip="{i18n>sortBtnTooltip}" />
                         </HBox>
 					</Column>
