@@ -32,7 +32,7 @@
                         <ObjectAttribute 
                             text="{
                                 path : 'cart>author_ID',
-                                formatter : '.authorNameFormatter'
+                                formatter : '.formatter.authorNameFormatter'
                             }" />
                         <StepInput
                             min="1"
@@ -60,14 +60,14 @@
                     class="sapUiSmallMarginBegin"/>
                 <ObjectNumber 
                     number="{cart>/totalPrice}"
-                    unit="" />
+                    unit="{= ${cart>/booksInCart} > 0 ? ${i18n>priceUnit} : ''}" />
 				<ToolbarSpacer/>
 				<Button
                     tooltip="{i18n>ProceedBtn}"
                     text="{i18n>ProceedBtn}"
                     type="Emphasized"
                     class="sapUiSmallMarginEnd"
-                    enabled=""
+                    enabled="{= ${cart>/booksInCart} !== 0}"
                     press=".onProceedPress" />
 			</OverflowToolbar>
             

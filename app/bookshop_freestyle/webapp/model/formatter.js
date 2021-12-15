@@ -14,7 +14,13 @@ sap.ui.define([], function () {
 				return "";
 			}
 			return parseFloat(sValue).toFixed(2);
-		}
+		},
+
+        authorNameFormatter: async function(sAuthorID) {
+            const oAuthor = await this.readP(`/Authors(${sAuthorID})`);
+
+            return oAuthor.fullName
+        },
 
 	};
 
