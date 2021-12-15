@@ -1,0 +1,123 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+	<Dialog
+        id="createOrderDialog"
+		title="{i18n>createOrderDialogHeading}">
+		<form:SimpleForm
+            validateFieldGroup=".onValidateControl">
+            <core:Title 
+                text="{i18n>createOrderGeneralHeading}" />
+
+            <Label
+                text="{i18n>customerNameLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'fullName',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1
+                    }
+                }"
+                placeholder="{i18n>customerNamePlaceholder}"
+                fieldGroupIds="createOrderDialogControls" />
+
+            <Label
+                text="{i18n>customerEmailLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'email',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        search: '\\S+@\\S+\\.\\S+'
+                    }
+                }"
+                placeholder="{i18n>customerEmailPlaceholder}"
+                fieldGroupIds="createOrderDialogControls" />
+
+            <Label
+                text="{i18n>customerPhoneLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'phone',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        search: '\\+375\\((33|29|44)\\)[0-9]{7}'
+                    }
+                }"
+                placeholder="{i18n>customerPhonePlaceholder}"
+                fieldGroupIds="createOrderDialogControls" />
+            
+            <core:Title text="{i18n>createOrderDeliveryHeading}" />
+
+            <Label
+                text="{i18n>deliveryCityLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'deliveryCity',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1
+                    }
+                }"
+                placeholder="{i18n>deliveryCityPlaceholder}"
+                fieldGroupIds="createOrderDialogControls" />
+
+            <Label
+                text="{i18n>deliveryStreetLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'deliveryStreet',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1
+                    }
+                }"
+                placeholder="{i18n>deliveryStreetPlaceholder}"
+                fieldGroupIds="createOrderDialogControls" />
+
+            <Label
+                text="{i18n>deliveryHouseLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'deliveryHouse',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1
+                    }
+                }"
+                placeholder="{i18n>deliveryHousePlaceholder}"
+                fieldGroupIds="createOrderDialogControls" />
+
+            <Label
+                text="{i18n>deliveryFlatLabel}"
+                required="true"/>
+            <Input
+                value="{
+                    path: 'deliveryFlat',
+                    type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1
+                    }
+                }"
+                placeholder="{i18n>deliveryFlatPlaceholder}"
+                fieldGroupIds="createOrderDialogControls" />
+        </form:SimpleForm>
+
+        <buttons>
+			<Button 
+                text="{i18n>checkoutBtnText}" 
+                press=".onCheckoutPress" />
+			<Button 
+                text="{i18n>cancelBtnText}" 
+                press=".onCancelPress" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

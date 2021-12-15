@@ -63,12 +63,11 @@
                     unit="{= ${cart>/booksInCart} > 0 ? ${i18n>priceUnit} : ''}" />
 				<ToolbarSpacer/>
 				<Button
-                    tooltip="{i18n>ProceedBtn}"
-                    text="{i18n>ProceedBtn}"
+                    text="{i18n>proceedBtnText}"
                     type="Emphasized"
                     class="sapUiSmallMarginEnd"
                     enabled="{= ${cart>/booksInCart} !== 0}"
-                    press=".onProceedPress" />
+                    press=".onOpenProceedDialogPress" />
 			</OverflowToolbar>
             
         </footer>

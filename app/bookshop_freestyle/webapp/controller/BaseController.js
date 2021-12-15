@@ -61,6 +61,12 @@ sap.ui.define([
             oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
 
+        clearCart: function() {
+            const oCartModel = this.getModel("cart");
+            
+            oCartModel.setProperty("/cart", []);
+        },
+
         getItemsCountInCart: function () {
             const oCartModel = this.getModel("cart");
             const aCartBooks = oCartModel.getProperty("/cart");

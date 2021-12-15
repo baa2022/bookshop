@@ -48,15 +48,57 @@ sap.ui.define([
 
         countTotalPrice: function () {
             const oCartModel = this.getModel("cart");
-            const aControls = this.getView().getControlsByFieldGroupId("stepInput").filter(control => control.isA("sap.m.StepInput"));
+            const aControls = this.getView().getControlsByFieldGroupId("stepInput").filter(oControl => oControl.isA("sap.m.StepInput"));
             const aCartBooks = oCartModel.getProperty("/cart");
-            const aBooksCount = aControls.map(control => control.getValue());
+            this.aBooksCount = aControls.map(oControl => oControl.getValue());
             const iTotalPrice = aCartBooks.reduce(function (totalPrice, oBook, index) {
-                return totalPrice + (oBook.price * aBooksCount[index]);
+                return totalPrice + (oBook.price * this.aBooksCount[index]);
             }.bind(this), 0);
 
             oCartModel.setProperty("/totalPrice", iTotalPrice);
         },
+
+        onOpenProceedDialogPress: function() {
+            const oView = this.getView();
+            const oODataModel = oView.getModel();
+            const oCartModel = this.getModel("cart");
+            const aCartBooks = oCartModel.getProperty("/cart");
+            const oEntryCtx = oODataModel.createEntry("/Orders", {
+                success: function (oData) {
+                    aCartBooks.forEach(function (oBook, index) {
+                        oODataModel.create("/Orders_items", {
+                            up__ID: oData.ID,
+                            quantity: this.aBooksCount[index],
+                            book_ID: oBook.ID
+                        });
+
+                        oODataModel.update(`/Books(${oBook.ID})`, {
+                            stock: oBook.stock - this.aBooksCount[index]
+                        });
+                    }.bind(this));
+
+                    this.clearCart();
+                }.bind(this)
+            });
+
+            if (!this.pOrderDialog) {
+                this.pOrderDialog = this.loadFragment({
+                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.CreateOrder"
+                });
+
+                this.pOrderDialog.then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                });
+            }
+
+            this.pOrderDialog.then(function (oDialog) {
+                oDialog.setBindingContext(oEntryCtx);
+                oDialog.setModel(oODataModel);
+                oDialog.open();
+            });
+        },
+
+        
     });
 
 });
