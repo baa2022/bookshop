@@ -120,11 +120,14 @@ sap.ui.define([
             const oBook = oCtx.getObject();
             const sMessage = this.getResourceBundle().getText("confirmDeletionMessage", oBook.title);
 
+            // if user press ok, functions call and we return true;
             return this.confirmP(sMessage)
                 .then(function () {
                     this.deleteBook(oBook);
                     this.removeBookFromCart(oBook.ID);
-                }.bind(this))
+
+                    return true;
+                }.bind(this), ()=> false)
                 .catch(() => { });
         },
 

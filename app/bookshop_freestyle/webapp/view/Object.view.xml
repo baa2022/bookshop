@@ -14,7 +14,8 @@
                 <uxap:heading>
                     <VBox>
                         <HBox alignItems="Center">
-                            <Title text="{title}"/>
+                            <Title 
+                                text="{title}"/>
                             <ToggleButton
                                 icon="sap-icon://cart-4"
                                 type="Transparent"
@@ -25,7 +26,8 @@
                                 press=".onAddToCartPress" />
                         </HBox>
                         
-                        <Text text="{author/fullName}"/>
+                        <Text 
+                            text="{author/fullName}"/>
                     </VBox>
                 </uxap:heading>
 
@@ -59,7 +61,8 @@
                     <Breadcrumbs>
                         <Link
                             text="{i18n>worklistLinkLabel}"
-                            press=".onBookLinkPress" />
+                            press=".onBookLinkPress"
+                            enabled="{= ${objectView>/isEditingMode} === false}" />
                         <Link
                             text="{i18n>objectLinkLabel}"
                             enabled="false" />
@@ -93,7 +96,8 @@
                         growing="true">
 
                         <columns>
-                            <Column id="CustomerNameColumn">
+                            <Column 
+                                id="CustomerNameColumn">
                                 <Text
                                     text="{i18n>tableCutomerNameColumnTitle}"
                                     id="CustomerNameColumnTitle" />

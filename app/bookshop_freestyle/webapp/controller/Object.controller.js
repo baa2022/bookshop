@@ -1,7 +1,8 @@
 sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
-], function (BaseController, JSONModel) {
+    "sap/m/MessageBox",
+], function (BaseController, JSONModel, MessageBox,) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Object", {
@@ -11,10 +12,12 @@ sap.ui.define([
                 isEditingMode: false,
                 sortStateOrder: 0,
             });
+            const oMessageManager = sap.ui.getCore().getMessageManager();
 
             this.setModel(oViewModel, "objectView");
             this.getRouter().getRoute("object").attachPatternMatched(this.onPatternMatched, this);
-
+            
+            oMessageManager.registerObject(this.getView(), true);
             this._oFragmentsMap = this.createFragmentsMap();
             this.showFormFragment();
         },
@@ -89,11 +92,39 @@ sap.ui.define([
 
         onSavePress: function() {
             const oODataModel = this.getModel();
+            const oView = this.getView();
             const oViewModel = this.getModel("objectView");
+            const aControls = oView.getControlsByFieldGroupId("editBookControl").filter(function (oControl) {
+                if (oControl.isA("sap.m.Input") || oControl.isA("sap.m.TextArea")) {
+                    return oControl;
+                }
+            });
+            const bRatingError = this.validateRatingIndicator(this.byId("ratingIndicator"));
+            let bValidationError = false;
 
-            oViewModel.setProperty("/isEditingMode", false);
-            oODataModel.submitChanges();
-            this.showFormFragment();
+            aControls.forEach(function (oControl) {
+                bValidationError = this.validateValue(oControl) || bValidationError;
+            }, this);
+
+            if (bValidationError || bRatingError) {
+                const sMessage = this.getResourceBundle().getText("validationErrorMessage");
+                MessageBox.error(sMessage);
+
+                return;
+            } else {
+                debugger;
+                oViewModel.setProperty("/isEditingMode", false);
+                oODataModel.submitChanges();
+                this.showFormFragment();
+            }
+        },
+
+        onValidate: function (oEvent) {
+            this.validateValue(oEvent.getSource());
+        },
+
+        onValidateRatingIndicator: function (oEvent) {
+            this.validateRatingIndicator(oEvent.getSource());
         },
 
         onCancelPress: function () {
@@ -113,7 +144,9 @@ sap.ui.define([
             const oCtx = oEvent.getSource().getBindingContext();
 
             this.onAfterDeletePress(oCtx)
-                .then(()=>this.navigateTo("worklist"));
+                .then(function(bIsBookDeleted) {
+                    if(bIsBookDeleted) this.navigateTo("worklist");
+                }.bind(this));
             
         },
 

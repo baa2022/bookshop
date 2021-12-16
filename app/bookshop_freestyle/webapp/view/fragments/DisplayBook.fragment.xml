@@ -16,6 +16,14 @@
         columnsL="1"
         columnsM="1">
         <Label
+            text="{i18n>bookTitleLabel}"
+            design="Bold"
+            labelFor="titleField"
+            vAlign="Middle" />
+        <Text
+            id="titleField"
+            text="{title}" />
+        <Label
             text="{i18n>AuthorLabel}"
             design="Bold"
             labelFor="authorField"

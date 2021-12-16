@@ -14,7 +14,25 @@
         emptySpanM="1"
         columnsXL="1"
         columnsL="1"
-        columnsM="1">
+        columnsM="1"
+        validateFieldGroup=".onValidate">
+        <Label
+            text="{i18n>bookTitleLabel}"
+            design="Bold"
+            labelFor="titleFormItem"
+            vAlign="Middle"
+            required="true" />
+        <Input
+            id="titleFormItem"
+            value="{
+                path: 'title',
+                type: 'sap.ui.model.type.String',
+                    constraints: {
+                        minLength: 1
+                }
+            }"
+            fieldGroupIds="editBookControl"
+            valueLiveUpdate="true" />
         <Label
             text="{i18n>AuthorLabel}"
             design="Bold"
@@ -73,7 +91,7 @@
                 }
             }"
             type="Number"
-            fieldGroupIds="editBookControls"
+            fieldGroupIds="editBookControl"
             valueLiveUpdate="true" />
         <Label
             text="{i18n>PriceLabel}"
@@ -93,7 +111,7 @@
             type="Number"
             description="{i18n>priceUnit}"
             fieldWidth="90%" 
-            fieldGroupIds="editBookControls"
+            fieldGroupIds="editBookControl"
             valueLiveUpdate="true" />
         <Label
             text="{i18n>DescriptionLabel}"
@@ -110,7 +128,7 @@
                 }
             }"
             growing="true" 
-            fieldGroupIds="editBookControls"
+            fieldGroupIds="editBookControl"
             valueLiveUpdate="true" />
         <Label
             text="{i18n>RatingLabel}"
