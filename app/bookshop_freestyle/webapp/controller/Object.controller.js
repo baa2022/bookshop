@@ -109,11 +109,12 @@ sap.ui.define([
             this.showFormFragment();
         },
 
-        onDeletePress: function (oEvent) {
+        onDeletePress: async function (oEvent) {
             const oCtx = oEvent.getSource().getBindingContext();
 
-            this.onAfterDeletePress(oCtx);
-            this.navigateTo("worklist");
+            this.onAfterDeletePress(oCtx)
+                .then(()=>this.navigateTo("worklist"));
+            
         },
 
     });

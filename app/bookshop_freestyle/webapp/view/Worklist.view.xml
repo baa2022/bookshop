@@ -199,8 +199,7 @@
 			<Button
                 press=".onOpenBookDialogPress"
                 icon="sap-icon://add"
-				text="{i18n>createBtnText}"
-                tooltip="{i18n>createBtnTooltip}"/>
+				text="{i18n>createBtnText}"/>
         </semantic:footerCustomActions>
 
 	</semantic:SemanticPage>

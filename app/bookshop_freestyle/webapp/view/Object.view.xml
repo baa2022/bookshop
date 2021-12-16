@@ -32,13 +32,11 @@
                 <uxap:actions>
                     <Button 
                         text="{i18n>editBtnText}"
-                        tooltip="{i18n>editBtnTooltip}"
                         type="Emphasized"
                         visible="{= ${objectView>/isEditingMode} === false}"
                         press=".onEditBookPress" />
 					<Button 
                         text="{i18n>deleteBtnText}"
-                        tooltip="{i18n>deleteBtnTooltip}"
                         type="Default"
                         visible="{= ${objectView>/isEditingMode} === false}"
                         press=".onDeletePress" />

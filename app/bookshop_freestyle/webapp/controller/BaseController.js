@@ -3,7 +3,9 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-], function (Controller, UIComponent, Filter, FilterOperator,) {
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+], function (Controller, UIComponent, Filter, FilterOperator, MessageToast, MessageBox, ) {
     "use strict";
 
     return Controller.extend("bookshop.freestyle.bookshopfreestyle.controller.BaseController", {
@@ -61,7 +63,7 @@ sap.ui.define([
             oCartModel.setProperty("/booksInCart", this.getItemsCountInCart());
         },
 
-        clearCart: function() {
+        clearCart: function () {
             const oCartModel = this.getModel("cart");
 
             oCartModel.setProperty("/cart", []);
@@ -108,28 +110,37 @@ sap.ui.define([
             });
         },
 
-        onAfterDeletePress: function (oCtx) {
-            const oODataModel = this.getModel();
-            const oBook = oCtx.getObject();
-            const sKey = oODataModel.createKey("/Books", oBook);
-
-            this.deleteBook(sKey, oBook.ID);
-            this.removeBookFromCart(oBook.ID);
+        confirmP: function (sMessage) {
+            return new Promise(function (resolve, reject) {
+                MessageBox.confirm(sMessage, oAction => oAction === MessageBox.Action.OK ? resolve() : reject());
+            });
         },
 
-        deleteBook: async function (sKey, sBookID) {
+        onAfterDeletePress: function (oCtx) {
+            const oBook = oCtx.getObject();
+            const sMessage = this.getResourceBundle().getText("confirmDeletionMessage", oBook.title);
+
+            return this.confirmP(sMessage)
+                .then(function () {
+                    this.deleteBook(oBook);
+                    this.removeBookFromCart(oBook.ID);
+                }.bind(this))
+                .catch(() => { });
+        },
+
+        deleteBook: async function (oBook) {
             const oODataModel = this.getModel();
+            const sKey = oODataModel.createKey("/Books", oBook);
             const aFilters = [
                 new Filter({
                     path: "book_ID",
                     operator: FilterOperator.EQ,
-                    value1: sBookID
+                    value1: oBook.ID
                 })
             ];
+            const oData = await this.readP("/Orders_items", aFilters);
 
             await oODataModel.remove(sKey);
-
-            const oData = await this.readP("/Orders_items", aFilters);
             oData.results.forEach(oOrder => oODataModel.remove(`/Orders(${oOrder.up__ID})`));
         },
 
