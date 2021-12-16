@@ -2,7 +2,7 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
-], function (BaseController, JSONModel, MessageBox,) {
+], function (BaseController, JSONModel, MessageBox, ) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Object", {
@@ -16,7 +16,7 @@ sap.ui.define([
 
             this.setModel(oViewModel, "objectView");
             this.getRouter().getRoute("object").attachPatternMatched(this.onPatternMatched, this);
-            
+
             oMessageManager.registerObject(this.getView(), true);
             this._oFragmentsMap = this.createFragmentsMap();
             this.showFormFragment();
@@ -90,7 +90,7 @@ sap.ui.define([
             this.onAfterAddToCartPress(oCtx);
         },
 
-        onSavePress: function() {
+        onSavePress: function () {
             const oODataModel = this.getModel();
             const oView = this.getView();
             const oViewModel = this.getModel("objectView");
@@ -111,12 +111,11 @@ sap.ui.define([
                 MessageBox.error(sMessage);
 
                 return;
-            } else {
-                debugger;
-                oViewModel.setProperty("/isEditingMode", false);
-                oODataModel.submitChanges();
-                this.showFormFragment();
             }
+
+            oViewModel.setProperty("/isEditingMode", false);
+            oODataModel.submitChanges();
+            this.showFormFragment();
         },
 
         onValidate: function (oEvent) {
@@ -144,10 +143,10 @@ sap.ui.define([
             const oCtx = oEvent.getSource().getBindingContext();
 
             this.onAfterDeletePress(oCtx)
-                .then(function(bIsBookDeleted) {
-                    if(bIsBookDeleted) this.navigateTo("worklist");
+                .then(function (bIsBookDeleted) {
+                    if (bIsBookDeleted) this.navigateTo("worklist");
                 }.bind(this));
-            
+
         },
 
     });

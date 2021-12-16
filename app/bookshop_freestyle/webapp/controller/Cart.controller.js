@@ -1,8 +1,11 @@
 sap.ui.define([
     "./BaseController",
     "../model/formatter",
-	"sap/ui/core/routing/History",
-], function (BaseController, formatter, History,) {
+    "sap/ui/core/routing/History",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+], function (BaseController, formatter, History, JSONModel,  MessageToast, MessageBox,) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Cart", {
@@ -26,7 +29,7 @@ sap.ui.define([
             sPreviousHash !== undefined ? window.history.go(-1) : this.navigateTo("worklist");
         },
 
-        onDeletePress: function(oEvent) {
+        onDeletePress: function (oEvent) {
             const oListItem = oEvent.getParameters().listItem;
             const oCtx = oListItem.getBindingContext("cart");
             const sID = oCtx.getObject("ID");
@@ -57,8 +60,11 @@ sap.ui.define([
             oCartModel.setProperty("/totalPrice", iTotalPrice);
         },
 
-        onOpenProceedDialogPress: function() {
+        onOpenProceedDialogPress: function () {
             const oView = this.getView();
+            const oAddressModel = new JSONModel({
+                address: { city:"", street:"", house:"", flat:"" }
+            });
             const oODataModel = oView.getModel();
             const oCartModel = this.getModel("cart");
             const aCartBooks = oCartModel.getProperty("/cart");
@@ -80,6 +86,8 @@ sap.ui.define([
                 }.bind(this)
             });
 
+            this.setModel(oAddressModel, "address");
+
             if (!this.pOrderDialog) {
                 this.pOrderDialog = this.loadFragment({
                     name: "bookshop.freestyle.bookshopfreestyle.view.fragments.CreateOrder"
@@ -97,10 +105,60 @@ sap.ui.define([
             });
         },
 
-        onCancelPress: function(oEvent) {
+        onCheckoutPress: function () {
+            this.pOrderDialog.then(function (oDialog) {
+                const oODataModel = this.getModel();
+                const oCtx = oDialog.getBindingContext();
+                const sPath = oCtx.getPath();
+                const oModel = oCtx.getModel();
+                const oDate = new Date();
+                const oAddress = this.getModel("address").getProperty("/address");
+                const sAddress = `${oAddress.city}, ${oAddress.street} st., ${oAddress.house}/${oAddress.flat}`
+                const aControls = this.getView().getControlsByFieldGroupId("orderDialogControl").filter(function (oControl) {
+                    if (oControl.isA("sap.m.Input")) {
+                        return oControl;
+                    }
+                });
+                let bValidationError = false;
+
+                aControls.forEach(function (oControl) {
+                    bValidationError = this.validateValue(oControl) || bValidationError;
+                }, this);
+
+                if (bValidationError) {
+                    const sMessage = this.getResourceBundle().getText("validationErrorMessage");
+                    MessageBox.error(sMessage);
+
+                    return;
+                }
+
+                oModel.setProperty(sPath + "/date", oDate);
+                oModel.setProperty(sPath + "/address", sAddress);
+
+                oODataModel.submitChanges();
+
+                oDialog.close();
+
+                const sMessage = this.getResourceBundle().getText("successOrderCreationMessage");
+
+                MessageToast.show(sMessage);
+                
+
+                this.navigateTo("worklist");
+            }.bind(this));
+        },
+
+        onCancelPress: function (oEvent) {
             const oDialog = oEvent.getSource().getParent();
+
             this.closeDialog(oDialog);
         },
+
+        onValidate: function (oEvent) {
+            this.validateValue(oEvent.getSource());
+        },
+
+
     });
 
 });

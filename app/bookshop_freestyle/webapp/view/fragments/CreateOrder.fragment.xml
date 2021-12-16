@@ -6,7 +6,7 @@
         id="createOrderDialog"
 		title="{i18n>createOrderDialogHeading}">
 		<form:SimpleForm
-            validateFieldGroup=".onValidateControl">
+            validateFieldGroup=".onValidate">
             <core:Title 
                 text="{i18n>createOrderGeneralHeading}" />
 
@@ -22,7 +22,7 @@
                     }
                 }"
                 placeholder="{i18n>customerNamePlaceholder}"
-                fieldGroupIds="createOrderDialogControls" />
+                fieldGroupIds="orderDialogControl" />
 
             <Label
                 text="{i18n>customerEmailLabel}"
@@ -36,7 +36,7 @@
                     }
                 }"
                 placeholder="{i18n>customerEmailPlaceholder}"
-                fieldGroupIds="createOrderDialogControls" />
+                fieldGroupIds="orderDialogControl" />
 
             <Label
                 text="{i18n>customerPhoneLabel}"
@@ -50,7 +50,7 @@
                     }
                 }"
                 placeholder="{i18n>customerPhonePlaceholder}"
-                fieldGroupIds="createOrderDialogControls" />
+                fieldGroupIds="orderDialogControl" />
             
             <core:Title text="{i18n>createOrderDeliveryHeading}" />
 
@@ -59,56 +59,56 @@
                 required="true"/>
             <Input
                 value="{
-                    path: 'deliveryCity',
+                    path: 'address>/address/city',
                     type: 'sap.ui.model.type.String',
                     constraints: {
                         minLength: 1
                     }
                 }"
                 placeholder="{i18n>deliveryCityPlaceholder}"
-                fieldGroupIds="createOrderDialogControls" />
+                fieldGroupIds="orderDialogControl" />
 
             <Label
                 text="{i18n>deliveryStreetLabel}"
                 required="true"/>
             <Input
                 value="{
-                    path: 'deliveryStreet',
+                    path: 'address>/address/street',
                     type: 'sap.ui.model.type.String',
                     constraints: {
                         minLength: 1
                     }
                 }"
                 placeholder="{i18n>deliveryStreetPlaceholder}"
-                fieldGroupIds="createOrderDialogControls" />
+                fieldGroupIds="orderDialogControl" />
 
             <Label
                 text="{i18n>deliveryHouseLabel}"
                 required="true"/>
             <Input
                 value="{
-                    path: 'deliveryHouse',
+                    path: 'address>/address/house',
                     type: 'sap.ui.model.type.String',
                     constraints: {
                         minLength: 1
                     }
                 }"
                 placeholder="{i18n>deliveryHousePlaceholder}"
-                fieldGroupIds="createOrderDialogControls" />
+                fieldGroupIds="orderDialogControl" />
 
             <Label
                 text="{i18n>deliveryFlatLabel}"
                 required="true"/>
             <Input
                 value="{
-                    path: 'deliveryFlat',
+                    path: 'address>/address/flat',
                     type: 'sap.ui.model.type.String',
                     constraints: {
                         minLength: 1
                     }
                 }"
                 placeholder="{i18n>deliveryFlatPlaceholder}"
-                fieldGroupIds="createOrderDialogControls" />
+                fieldGroupIds="orderDialogControl" />
         </form:SimpleForm>
 
         <buttons>

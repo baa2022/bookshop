@@ -3,9 +3,8 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/m/MessageToast",
     "sap/m/MessageBox",
-], function (Controller, UIComponent, Filter, FilterOperator, MessageToast, MessageBox, ) {
+], function (Controller, UIComponent, Filter, FilterOperator, MessageBox, ) {
     "use strict";
 
     return Controller.extend("bookshop.freestyle.bookshopfreestyle.controller.BaseController", {
@@ -67,6 +66,8 @@ sap.ui.define([
             const oCartModel = this.getModel("cart");
 
             oCartModel.setProperty("/cart", []);
+            oCartModel.setProperty("/booksInCart", 0);
+            oCartModel.setProperty("/totalPrice", 0);
         },
 
         getItemsCountInCart: function () {
