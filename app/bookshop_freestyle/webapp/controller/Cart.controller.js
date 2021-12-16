@@ -32,9 +32,14 @@ sap.ui.define([
         onDeletePress: function (oEvent) {
             const oListItem = oEvent.getParameters().listItem;
             const oCtx = oListItem.getBindingContext("cart");
-            const sID = oCtx.getObject("ID");
+            const oBook = oCtx.getObject();
+            const sMessage = this.getResourceBundle().getText("confirmDeletionMessage", oBook.title);
 
-            this.removeBookFromCart(sID);
+            this.confirmP(sMessage)
+                .then(function () {
+                    this.removeBookFromCart(oBook.ID);
+                }.bind(this))
+                .catch(() => { });
         },
 
         onStepInputValueChange: function (oEvent) {
