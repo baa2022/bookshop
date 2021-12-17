@@ -127,7 +127,13 @@ sap.ui.define([
         },
 
         onCancelPress: function () {
-            this.discardChanges();
+            const sMessage = this.getResourceBundle().getText("confirmPageExitMessage");
+            
+            this.confirmP(sMessage)
+                .then(function () {
+                    this.discardChanges();
+                }.bind(this))
+                .catch(() => { });
         },
 
         discardChanges: function () {

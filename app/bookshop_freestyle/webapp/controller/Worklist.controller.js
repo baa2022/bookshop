@@ -235,8 +235,14 @@ sap.ui.define([
         },
 
         onCancelPress: function (oEvent) {
+            const sMessage = this.getResourceBundle().getText("confirmPageExitMessage");
             const oDialog = oEvent.getSource().getParent();
-            this.closeDialog(oDialog);
+            
+            this.confirmP(sMessage)
+                .then(function () {
+                    this.closeDialog(oDialog);
+                }.bind(this))
+                .catch(() => { });
         },
 
         onValidate: function (oEvent) {

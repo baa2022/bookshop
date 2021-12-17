@@ -4,7 +4,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox",
-], function (Controller, UIComponent, Filter, FilterOperator, MessageBox, ) {
+	'sap/m/MessageStrip',
+	'sap/ui/core/InvisibleMessage',
+], function (Controller, UIComponent, Filter, FilterOperator, MessageBox,  MessageStrip, InvisibleMessage,) {
     "use strict";
 
     return Controller.extend("bookshop.freestyle.bookshopfreestyle.controller.BaseController", {

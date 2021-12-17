@@ -44,13 +44,20 @@ sap.ui.define([
 
         onStepInputValueChange: function (oEvent) {
             const oSourceControl = oEvent.getSource();
-            const nValue = oSourceControl.getValue();
+            const iValue = oSourceControl.getValue();
             const oCtx = oSourceControl.getBindingContext("cart");
-            const nStock = oCtx.getObject("stock");
-            const iTotalValue = nValue > nStock ? nStock : nValue;
+            const iStock = oCtx.getObject("stock");
+            const iTotalValue = iValue > iStock ? iStock : iValue;
 
             oSourceControl.setValue(iTotalValue);
             this.countTotalPrice();
+
+            if(iValue >= iStock) {
+                const sMessage = this.getResourceBundle().getText("notificationBookCountMessage", iStock);
+
+                oSourceControl.setValueState("Information");
+                oSourceControl.setValueStateText(sMessage);         
+            }
         },
 
         countTotalPrice: function () {
@@ -154,9 +161,14 @@ sap.ui.define([
         },
 
         onCancelPress: function (oEvent) {
+            const sMessage = this.getResourceBundle().getText("confirmPageExitMessage");
             const oDialog = oEvent.getSource().getParent();
-
-            this.closeDialog(oDialog);
+            
+            this.confirmP(sMessage)
+                .then(function () {
+                    this.closeDialog(oDialog);
+                }.bind(this))
+                .catch(() => { });
         },
 
         onValidate: function (oEvent) {

@@ -37,7 +37,7 @@
                         <StepInput
                             min="1"
                             max="{cart>stock}"
-                            width="100px"
+                            width="115px"
                             step="1"
                             textAlign="Center"
                             change=".onStepInputValueChange"
