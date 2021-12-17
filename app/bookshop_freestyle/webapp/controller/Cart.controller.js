@@ -175,6 +175,57 @@ sap.ui.define([
             this.validateValue(oEvent.getSource());
         },
 
+        onOpenKeyboardPress: function (oEvent) {
+            const oButton = oEvent.getSource()
+
+            if (!this.pPopover) {
+                this.pPopover = this.loadFragment({
+                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.EnterPhoneNumber"
+                }).then(function (oPopover) {
+                    this.getView().addDependent(oPopover);
+
+                    return oPopover;
+                }.bind(this));
+            }
+
+            this.pPopover.then(oPopover=>oPopover.openBy(oButton));
+        },
+
+        onNumberKeyPress: function (oEvent) {
+            const phoneInput = this.byId("phoneInput");
+            const numberValue = oEvent.getParameter("value");
+            let phoneInputValue = phoneInput.getValue();
+
+            phoneInputValue = phoneInputValue ? phoneInputValue + numberValue : numberValue;
+
+            phoneInput.setValue(phoneInputValue);
+        },
+
+        onPlusKeyPress: function () {
+            const phoneInput = this.byId("phoneInput");
+            let phoneInputValue = phoneInput.getValue();
+
+            if (phoneInputValue) {
+                if (!phoneInputValue.includes("+")) {
+                    phoneInputValue = "+" + phoneInputValue;
+                }
+            } else {
+                phoneInputValue = "+";
+            }
+
+            phoneInput.setValue(phoneInputValue);
+        },
+
+        onRemoveKeyPress: function () {
+            const phoneInput = this.byId("phoneInput");
+            let phoneInputValue = phoneInput.getValue();
+
+            if (phoneInputValue) {
+                // TODO
+                phoneInputValue = phoneInputValue.slice(0, phoneInputValue.length - 1);
+                phoneInput.setValue(phoneInputValue);
+            }
+        },
 
     });
 

@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:custom="bookshop.freestyle.bookshopfreestyle.control">
+
+    <ResponsivePopover
+		id="enterPhonePopover"
+		title="{i18n>EnterPhoneHeading}"
+		class="sapUiResponsiveContentPadding" >
+		<custom:PhoneNumber
+            numberKeyPress=".onNumberKeyPress"
+            plusKeyPress=".onPlusKeyPress"
+            removeKeyPress=".onRemoveKeyPress" />
+	</ResponsivePopover>
+    
+</core:FragmentDefinition>

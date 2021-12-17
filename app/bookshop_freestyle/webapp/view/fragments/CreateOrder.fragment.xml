@@ -42,15 +42,20 @@
                 text="{i18n>customerPhoneLabel}"
                 required="true"/>
             <Input
+                id="phoneInput"
                 value="{
                     path: 'phone',
                     type: 'sap.ui.model.type.String',
                     constraints: {
-                        search: '\\+375\\((33|29|44)\\)[0-9]{7}'
+                        search: '\\+375(33|29|44)[0-9]{7}'
                     }
                 }"
-                placeholder="{i18n>customerPhonePlaceholder}"
-                fieldGroupIds="orderDialogControl" />
+				placeholder="{i18n>customerPhonePlaceholder}"
+				showValueHelp="true"
+				valueHelpOnly="true"
+                valueHelpIconSrc="sap-icon://simulate"
+                fieldGroupIds="orderDialogControl"
+				valueHelpRequest=".onOpenKeyboardPress" />
             
             <core:Title text="{i18n>createOrderDeliveryHeading}" />
 
