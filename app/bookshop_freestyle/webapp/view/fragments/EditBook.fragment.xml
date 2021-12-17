@@ -58,7 +58,7 @@
             <dependents>
                 <Button
                     id="addAuthorBtn"
-                    text="Add new author" 
+                    text="{i18n>addAuthorBtnText}" 
                     press=".onOpenAuthorDialogPress" />
             </dependents>
         </ActionSelect>
