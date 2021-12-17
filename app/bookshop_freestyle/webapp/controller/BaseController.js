@@ -188,6 +188,7 @@ sap.ui.define([
 
         validateRatingIndicator: function (oControl) {
             if (oControl.getValue() < 1) {
+                oControl.setValue(1);
                 return true;
             }
 
