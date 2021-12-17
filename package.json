@@ -11,12 +11,13 @@
     "express": "^4"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.90.15",
+    "@sap/ux-specification": "^1.96.0",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
     "start": "cds run",
-    "watch-bookshop_freestyle": "cds watch --open bookshop_freestyle/webapp/index.html#fe-lrop-v4"
+    "watch-bookshop_freestyle": "cds watch --open bookshop_freestyle/webapp/index.html#fe-lrop-v4",
+    "watch-bookshop_fiori": "cds watch --open bookshop_fiori/webapp/index.html#fe-lrop-v4"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -44,6 +45,7 @@
     }
   },
   "sapux": [
-    "app/bookshop_freestyle"
+    "app/bookshop_freestyle",
+    "app/bookshop_fiori"
   ]
 }

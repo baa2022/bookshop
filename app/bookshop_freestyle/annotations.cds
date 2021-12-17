@@ -1,1 +1,1 @@
-using AdminService as service from '../../srv/admin-service';
+using FreestyleService as service from '../../srv/admin-service';
