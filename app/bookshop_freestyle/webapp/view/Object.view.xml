@@ -175,7 +175,7 @@
 				<Button 
                     type="Transparent" 
                     text="{i18n>cancelBtnText}"
-                    press=".onCancelPress" />
+                    press=".onCancelPress($event, 'editBookControl')" />
 			</OverflowToolbar>
 		</uxap:footer>
 

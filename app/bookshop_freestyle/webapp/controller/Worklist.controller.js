@@ -91,7 +91,7 @@ sap.ui.define([
                 const sPath = oCtx.getPath();
                 const sID = this.byId("author").getSelectedItem().getKey();
                 const sGenre = this.byId("genre").getSelectedItem().getKey();
-                const aControls = oView.getControlsByFieldGroupId("bookDialogControls").filter(function (oControl) {
+                const aControls = oView.getControlsByFieldGroupId("bookDialogControl").filter(function (oControl) {
                     if (oControl.isA("sap.m.Input") || oControl.isA("sap.m.TextArea")) {
                         return oControl;
                     }
@@ -234,13 +234,13 @@ sap.ui.define([
             this.onAfterDeletePress(oCtx);
         },
 
-        onCancelPress: function (oEvent) {
+        onCancelPress: function (oEvent, sFieldGroupId) {
             const sMessage = this.getResourceBundle().getText("confirmPageExitMessage");
             const oDialog = oEvent.getSource().getParent();
-            
+
             this.confirmP(sMessage)
                 .then(function () {
-                    this.closeDialog(oDialog);
+                    this.closeDialog(oDialog, sFieldGroupId);
                 }.bind(this))
                 .catch(() => { });
         },
@@ -251,6 +251,14 @@ sap.ui.define([
 
         onValidateRatingIndicator: function (oEvent) {
             this.validateRatingIndicator(oEvent.getSource());
+        },
+
+        onOpenAuthorDialogPress: function () {
+            this.openAuthorDialog();
+        },
+
+        onCreateAuthorPress: function () {
+            this.createAuthor();
         },
 
     });

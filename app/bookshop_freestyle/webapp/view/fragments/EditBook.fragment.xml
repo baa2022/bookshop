@@ -40,7 +40,7 @@
             vAlign="Middle"
             required="true" />
         <ActionSelect
-            id="authorFormItem"
+            id="author"
             buttons="addAuthorBtn"
             items="{
 				path: '/Authors',
@@ -59,7 +59,7 @@
                 <Button
                     id="addAuthorBtn"
                     text="Add new author" 
-                    press=".onCreateAuthorPress" />
+                    press=".onOpenAuthorDialogPress" />
             </dependents>
         </ActionSelect>
         <Label

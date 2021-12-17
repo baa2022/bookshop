@@ -20,7 +20,7 @@
                     }
                 }"
                 placeholder="{i18n>CreateBookTitlePlaceholder}"
-                fieldGroupIds="bookDialogControls" />
+                fieldGroupIds="bookDialogControl" />
             <Label
                 text="{i18n>AuthorLabel}"
                 labelFor="author"
@@ -45,7 +45,7 @@
                     <Button
                         id="addAuthorBtn"
                         text="Add new author" 
-                        press=".onCreateAuthorPress" />
+                        press=".onOpenAuthorDialogPress" />
                 </dependents>
             </ActionSelect>
             <Label
@@ -74,7 +74,7 @@
                 }"
                 type="Number"
                 placeholder="{i18n>CreateBookStockPlaceholder}"
-                fieldGroupIds="bookDialogControls" />
+                fieldGroupIds="bookDialogControl" />
             <Label
                 text="{i18n>PriceLabel}"
                 required="true"/>
@@ -90,7 +90,7 @@
                 type="Number"
                 placeholder="{i18n>CreateBookPricePlaceholder}"
                 description="{i18n>priceUnit}"
-                fieldGroupIds="bookDialogControls" />
+                fieldGroupIds="bookDialogControl" />
             <Label
                 text="{i18n>RatingLabel}"
                 required="true"/>
@@ -111,7 +111,7 @@
                     }
                 }"
                 placeholder="{i18n>CreateBookDescrPlaceholder}"
-                fieldGroupIds="bookDialogControls"
+                fieldGroupIds="bookDialogControl"
                 rows="3"
                 valueLiveUpdate="true" />
         </form:SimpleForm>
@@ -122,7 +122,7 @@
                 press=".onCreateBookPress" />
 			<Button 
                 text="{i18n>cancelBtnText}"
-                press=".onCancelPress" />
+                press=".onCancelPress($event, 'bookDialogControl')" />
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>

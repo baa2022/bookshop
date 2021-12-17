@@ -4,9 +4,8 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox",
-	'sap/m/MessageStrip',
-	'sap/ui/core/InvisibleMessage',
-], function (Controller, UIComponent, Filter, FilterOperator, MessageBox,  MessageStrip, InvisibleMessage,) {
+    "sap/m/MessageToast",
+], function (Controller, UIComponent, Filter, FilterOperator, MessageBox, MessageToast,) {
     "use strict";
 
     return Controller.extend("bookshop.freestyle.bookshopfreestyle.controller.BaseController", {
@@ -193,6 +192,78 @@ sap.ui.define([
             }
 
             return false;
+        },
+
+        openAuthorDialog: function () {
+            const oView = this.getView();
+            const oODataModel = oView.getModel();
+            const oEntryCtx = oODataModel.createEntry("/Authors", {
+                groupId: "authorGroup",
+            });
+
+            if (!this.pAuthorDialog) {
+                this.pAuthorDialog = this.loadFragment({
+                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.CreateAuthor"
+                });
+
+                this.pAuthorDialog.then(oDialog => oView.addDependent(oDialog));
+            }
+
+            this.pAuthorDialog.then(function (oDialog) {
+                oDialog.setBindingContext(oEntryCtx);
+                oDialog.setModel(oODataModel);
+                oDialog.open();
+            });
+        },
+
+        createAuthor: function () {
+            const oODataModel = this.getView().getModel();
+
+            this.pAuthorDialog.then(function (oDialog) {
+                const oCtx = oDialog.getBindingContext();
+                const sPath = oCtx.getPath();
+                const oModel = oCtx.getModel();
+                const oDateTime = new Date();
+                const aControls = this.getView().getControlsByFieldGroupId("authorDialogControl").filter(control => control.isA("sap.m.Input"));
+                let bValidationError = false;
+
+                aControls.forEach(function (oControl) {
+                    bValidationError = this.validateValue(oControl) || bValidationError;
+                }, this);
+
+                if (bValidationError) {
+                    const sMessage = this.getResourceBundle().getText("validationErrorMessage");
+                    MessageBox.error(sMessage);
+
+                    return;
+                }
+
+                oModel.setProperty(sPath + "/creationDateTime", oDateTime);
+
+                this.updateSelectededAuthor(oDateTime);
+
+                oODataModel.submitChanges({
+                    groupId: "authorGroup"
+                });
+                oDialog.close();
+
+                const sAuthorName = oModel.getProperty(sPath + "/fullName");
+                const sCreatedEntityName = this.getResourceBundle().getText("authorEntityTitle");
+                const sMessage = this.getResourceBundle().getText("successCreationMessage", [sCreatedEntityName, sAuthorName]);
+
+                MessageToast.show(sMessage);
+
+            }.bind(this));
+        },
+
+        updateSelectededAuthor: function (oDateTime) {
+            const oSelectControl = this.byId("author");
+            const oItemsBinding = oSelectControl.getBinding("items");
+            const oFilter = new Filter("creationDateTime", FilterOperator.EQ, oDateTime);
+            const oItem = oItemsBinding.filter(oFilter);
+
+            oItemsBinding.filter();
+            oSelectControl.setSelectedKey(oItem);
         },
 
     })

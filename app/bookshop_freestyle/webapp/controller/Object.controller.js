@@ -126,13 +126,17 @@ sap.ui.define([
             this.validateRatingIndicator(oEvent.getSource());
         },
 
-        onCancelPress: function () {
+        onCancelPress: function (oEvent, sFieldGroupId) {
             const sMessage = this.getResourceBundle().getText("confirmPageExitMessage");
-            
+            const oDialog = oEvent.getSource().getParent();
+            const editModeCallback = this.discardChanges.bind(this);
+            const authorCallback = this.closeDialog.bind(this, oDialog, sFieldGroupId);
+            const isEditModeClosing = sFieldGroupId === "editBookControl";
+
             this.confirmP(sMessage)
                 .then(function () {
-                    this.discardChanges();
-                }.bind(this))
+                    isEditModeClosing ? editModeCallback() : authorCallback();
+                })
                 .catch(() => { });
         },
 
@@ -153,6 +157,14 @@ sap.ui.define([
                     if (bIsBookDeleted) this.navigateTo("worklist");
                 }.bind(this));
 
+        },
+
+        onOpenAuthorDialogPress: function () {
+            this.openAuthorDialog();
+        },
+
+        onCreateAuthorPress: function () {
+            this.createAuthor();
         },
 
     });
