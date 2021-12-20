@@ -100,6 +100,7 @@
                         "settings": {
                             "entitySet": "Books",
                             "variantManagement": "Page",
+                            "initialLoad": true,
                             "navigation": {
                                 "Books": {
                                     "detail": {
