@@ -1,0 +1,12 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m" 
+    xmlns:l="sap.ui.layout">
+	<l:VerticalLayout>
+		<Button 
+            tooltip="Convert"
+            icon="sap-icon://collections-insight"
+            press=".extension.bookshop.fiori.bookshopfiori.ext.controller.ConvertationButton.onOpenPopoverPress"
+            type="Transparent" />
+	</l:VerticalLayout>
+</core:FragmentDefinition>

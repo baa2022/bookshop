@@ -16,6 +16,10 @@
                 "settings": {
                     "odataVersion": "4.0"
                 }
+            },
+            "convertationService": {
+                "uri": "model/convertation.json",
+                "type": "JSON"
             }
         },
         "offline": false,
@@ -42,6 +46,16 @@
         }
     },
     "sap.ui5": {
+        "extends": {
+            "component": "sap.suite.ui.generic.template.ListReport",
+            "extensions": {
+              "sap.ui.controllerExtensions": {
+                "sap.fe.templates.ListReport.ListReportController": {
+                  "controllerName": "bookshop.fiori.bookshopfiori.ext.controller.ConvertationButton"
+                }
+              }
+            }
+          },
         "resources": {
             "js": [],
             "css": []
@@ -71,6 +85,10 @@
                     "autoExpandSelect": true,
                     "earlyRequests": true
                 }
+            },
+            "convertationModel":{
+                "dataSource": "convertationService",
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
         "routing": {
@@ -105,6 +123,24 @@
                                 "Books": {
                                     "detail": {
                                         "route": "BooksObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "columns": {
+                                        "ConvertationColumn": {
+                                            "header": "Convert",
+                                            "width": "10em",
+                                            "horizontalAlign": "Center",
+                                            "position": {
+                                                "placement": "Before",
+                                                "anchor": "DataFieldForAnnotation::DataPoint::Rating"
+                                            },
+                                            "template": "bookshop.fiori.bookshopfiori.ext.view.fragment.ConvertationButton",
+                                            "availability": "Default",
+                                            "properties": []
+                                        }
                                     }
                                 }
                             }
