@@ -11,7 +11,7 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "/v2/admin/",
+                "uri": "/v2/freestyle/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
