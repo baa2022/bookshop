@@ -46,15 +46,6 @@
         }
     },
     "sap.ui5": {
-        "extends": {
-            "extensions": {
-              "sap.ui.controllerExtensions": {
-                "sap.fe.templates.ListReport.ListReportController": {
-                  "controllerName": "bookshop.fiori.bookshopfiori.ext.controller.ListReportExtension"
-                }
-              }
-            }
-          },
         "resources": {
             "js": [],
             "css": []
