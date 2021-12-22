@@ -2,11 +2,12 @@
     xmlns:core="sap.ui.core" 
     xmlns="sap.m" 
     xmlns:l="sap.ui.layout">
-	<l:VerticalLayout>
+	<l:VerticalLayout
+        core:require="{handler: 'bookshop/fiori/bookshopfiori/ext/controller/ConvertationButton'}">
 		<Button 
             tooltip="Convert"
             icon="sap-icon://collections-insight"
-            press=".extension.bookshop.fiori.bookshopfiori.ext.controller.ConvertationButton.onOpenPopoverPress"
+            press="handler.onOpenPopoverPress"
             type="Transparent" />
 	</l:VerticalLayout>
 </core:FragmentDefinition>

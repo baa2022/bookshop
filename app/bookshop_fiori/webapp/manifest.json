@@ -47,11 +47,10 @@
     },
     "sap.ui5": {
         "extends": {
-            "component": "sap.suite.ui.generic.template.ListReport",
             "extensions": {
               "sap.ui.controllerExtensions": {
                 "sap.fe.templates.ListReport.ListReportController": {
-                  "controllerName": "bookshop.fiori.bookshopfiori.ext.controller.ConvertationButton"
+                  "controllerName": "bookshop.fiori.bookshopfiori.ext.controller.ListReportExtension"
                 }
               }
             }

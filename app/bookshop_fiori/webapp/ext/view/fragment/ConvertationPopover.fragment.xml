@@ -1,19 +1,37 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
-	xmlns:core="sap.ui.core">
+	xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
 	<ResponsivePopover
 		id="popover"
-		title="{title}"
-		class="sapUiContentPadding"
-		placement="Right" >
+		title="{i18n>popoverTitle}"
+        core:require="{handler: 'bookshop/fiori/bookshopfiori/ext/controller/ConvertationButton'}">
 		<endButton>
 			<Button 
                 text="{i18n>closeBtnText}" 
-                press="handleCloseButton" />
+                press="handler.onClosePopoverPress" />
 		</endButton>
 		<content>
-			<Text 
-                text="aoaoaoaoao"/>
+            <form:SimpleForm
+                layout="ResponsiveGridLayout">
+                <Label
+                    text="{i18n>bookLabel}"
+                    design="Bold"
+                    labelFor="book" />
+                <Text
+                    id="book"
+                    text="{title}"/>
+
+                <Label
+                    text="{i18n>priceLabel}"
+                    design="Bold" />
+                <ObjectNumber
+                    number="{price}"
+                    unit="{i18n>USDTitle}" />
+                <ObjectNumber
+                    number="{convertationModel>/price_BYN}"
+                    unit="{i18n>BYNTitle}" />
+            </form:SimpleForm>
 		</content>
 	</ResponsivePopover>
 </core:FragmentDefinition>
