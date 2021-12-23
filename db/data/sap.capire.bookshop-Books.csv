@@ -1,15 +1,16 @@
 ID;stock;price;currency;title;descr;author_ID;rating;genre_title
-3b48fcc6-f5b9-4e16-9260-4bceaf8a50c3;26;234;USD;Wuthering Heights;Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff.;06f8349f-fb9e-41d0-9070-363910af4021;5;Tragedy
+
+3b48fcc6-f5b9-4e16-9260-4bceaf8a50c3;26;23;USD;Wuthering Heights;Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff.;06f8349f-fb9e-41d0-9070-363910af4021;5;Tragedy
 
 4563beb9-31cb-4813-825b-700ef043c638;110;52;USD;Jane Eyre;Jane Eyre is a novel by English writer Charlotte Brontë, published under the pen name "Currer Bell", on 16 October 1847, by Smith, Elder & Co. of London. The first American edition was published the following year by Harper & Brothers of New York.Jane Eyre is a novel by English writer Charlotte Brontë, published under the pen name "Currer Bell", on 16 October 1847, by Smith, Elder & Co. of London. The first American edition was published the following year by Harper & Brothers of New York.;07662818-79af-4289-b6ee-e5c79a9572d0;4;Romance
 
-6f37ccca-34dc-4453-89da-64ef04844c9d;59;302;USD;The Raven;First published in January 1845, the poem is often noted for its musicality, stylized language, and supernatural atmosphere. It tells of a talking raven's mysterious visit to a distraught lover, tracing the man's slow descent into madness.;7dbf2fec-17ed-4990-b636-5f4cc68fc546;5;Poetry
+6f37ccca-34dc-4453-89da-64ef04844c9d;59;32;USD;The Raven;First published in January 1845, the poem is often noted for its musicality, stylized language, and supernatural atmosphere. It tells of a talking raven's mysterious visit to a distraught lover, tracing the man's slow descent into madness.;7dbf2fec-17ed-4990-b636-5f4cc68fc546;5;Poetry
 
-96edb013-84ce-4ad2-b0c5-a0d094c9ebc4;78;222;USD;Eleonora;"Eleonora" is a short story by Edgar Allan Poe, first published in 1842 in Philadelphia in the literary annual The Gift. It is often regarded as somewhat autobiographical and has a relatively "happy" ending.;7dbf2fec-17ed-4990-b636-5f4cc68fc546;3;Action
+96edb013-84ce-4ad2-b0c5-a0d094c9ebc4;78;22;USD;Eleonora;"Eleonora" is a short story by Edgar Allan Poe, first published in 1842 in Philadelphia in the literary annual The Gift. It is often regarded as somewhat autobiographical and has a relatively "happy" ending.;7dbf2fec-17ed-4990-b636-5f4cc68fc546;3;Action
 
-de6d0417-042a-49d8-81a8-18b6db28ac03;12;99;USD;Catweazle;Catweazle is a magician from the time of the Normans who is cast into the future by magic. With the help of two boys he uses magic in an attempt to return to his own time.;aa5be420-27be-492d-a000-4a772f5c2865;5;Comedy
+de6d0417-042a-49d8-81a8-18b6db28ac03;12;49;USD;Catweazle;Catweazle is a magician from the time of the Normans who is cast into the future by magic. With the help of two boys he uses magic in an attempt to return to his own time.;aa5be420-27be-492d-a000-4a772f5c2865;5;Comedy
 
-d036b2c2-02b7-4c78-9549-43a5c6d2e371;993;73;USD;Robin of Sherwood: The Hooded Man;In a dramatic retelling of the famous legend, a young boy dreams of Robin Hood, Sherwood Forest's most notorious outlaw, who is discovering the dangers that go along with his fame and success.;aa5be420-27be-492d-a000-4a772f5c2865;4;Drama
+d036b2c2-02b7-4c78-9549-43a5c6d2e371;993;53;USD;Robin of Sherwood: The Hooded Man;In a dramatic retelling of the famous legend, a young boy dreams of Robin Hood, Sherwood Forest's most notorious outlaw, who is discovering the dangers that go along with his fame and success.;aa5be420-27be-492d-a000-4a772f5c2865;4;Drama
 
 620bc15a-0990-4163-b071-9aaf191e8ca0;56;13;USD;Hamlet;The Tragedy of Hamlet, Prince of Denmark, often shortened to Hamlet, is a tragedy written by William Shakespeare sometime between 1599 and 1601. It is Shakespeare's longest play, with 29,551 words.;b68afdde-1231-4e80-9611-0fa8ad3eb1ea;5;Tragedy
 
