@@ -57,6 +57,6 @@ annotate service.Authors with @odata.draft.enabled {
 }
 
 annotate service.OrderItems with {
-    book_ID @UI.Hidden;
-    up__ID @UI.Hidden;
+    book_ID @UI.Hidden @UI.HiddenFilter;
+    up__ID @UI.Hidden @UI.HiddenFilter;
 }

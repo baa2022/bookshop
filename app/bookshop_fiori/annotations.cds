@@ -138,8 +138,8 @@ annotate service.Books with @(UI : {
 annotate service.Orders_items with @(UI : {
 
     HeaderInfo: {
-        TypeName       : '{@i18n>orderlistTableTitle}',
-        TypeNamePlural : '{@i18n>orderlistTablePluralTitle}'
+        TypeName       : '{i18n>orderlistTableTitle}',
+        TypeNamePlural : '{i18n>orderlistTablePluralTitle}'
     },
 
     LineItem: [
@@ -178,7 +178,17 @@ annotate service.Orders_items with @(UI : {
             Label : '{i18n>Date}',
             Value : up_.date,
             ![@UI.Importance] : #High
-        }
+        },
+        {
+            $Type             : 'UI.DataField',
+            Value            : book_ID,
+            ![@UI.Hidden]
+        },
+        {
+            $Type             : 'UI.DataField',
+            Value            : up__ID,
+            ![@UI.Hidden]
+        },
     ],
 });
 annotate service.Books with {
