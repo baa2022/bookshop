@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="bookshop.freestyle.bookshopfreestyle.controller.App"
+	controllerName="bookshop.freestyle.controller.App"
 	displayBlock="true"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">

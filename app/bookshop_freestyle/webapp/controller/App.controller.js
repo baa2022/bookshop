@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.App", {
+	return BaseController.extend("bookshop.freestyle.controller.App", {
 
 		onInit : function () {
 			// apply content density mode to root view

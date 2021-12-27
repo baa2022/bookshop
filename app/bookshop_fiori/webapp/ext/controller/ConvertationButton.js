@@ -24,11 +24,11 @@ sap.ui.define([],
             onOpenPopoverPress: async function (oEvent) {
                 const oSourceControl = oEvent.getSource();
                 const oCtx = oSourceControl.getBindingContext();
-                const oListReportView = sap.ui.getCore().byId("bookshop.fiori.bookshopfiori::BooksList");
+                const oListReportView = sap.ui.getCore().byId("bookshop.fiori::BooksList");
 
                 if(!this.pInfoPopover) {
                     this.pInfoPopover = this.loadFragment({
-                        name: "bookshop.fiori.bookshopfiori.ext.view.fragment.ConvertationPopover"
+                        name: "bookshop.fiori.ext.view.fragment.ConvertationPopover"
                     });
     
                     this.pInfoPopover.then(oPopover => oListReportView.addDependent(oPopover));

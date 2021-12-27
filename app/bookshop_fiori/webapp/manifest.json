@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "bookshop.fiori.bookshopfiori",
+        "id": "bookshop.fiori",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -127,7 +127,7 @@
                                                 "placement": "Before",
                                                 "anchor": "DataFieldForAnnotation::DataPoint::Rating"
                                             },
-                                            "template": "bookshop.fiori.bookshopfiori.ext.view.fragment.ConvertationButton",
+                                            "template": "bookshop.fiori.ext.view.fragment.ConvertationButton",
                                             "availability": "Default",
                                             "properties": []
                                         }

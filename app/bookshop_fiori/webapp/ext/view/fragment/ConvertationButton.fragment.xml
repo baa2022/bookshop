@@ -3,7 +3,7 @@
     xmlns="sap.m" 
     xmlns:l="sap.ui.layout">
 	<l:VerticalLayout
-        core:require="{handler: 'bookshop/fiori/bookshopfiori/ext/controller/ConvertationButton'}">
+        core:require="{handler: 'bookshop/fiori/ext/controller/ConvertationButton'}">
 		<Button 
             tooltip="Convert"
             icon="sap-icon://collections-insight"

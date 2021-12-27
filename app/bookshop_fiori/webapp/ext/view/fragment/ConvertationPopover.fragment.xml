@@ -5,7 +5,7 @@
 	<ResponsivePopover
 		id="popover"
 		title="{i18n>popoverTitle}"
-        core:require="{handler: 'bookshop/fiori/bookshopfiori/ext/controller/ConvertationButton'}">
+        core:require="{handler: 'bookshop/fiori/ext/controller/ConvertationButton'}">
 		<endButton>
 			<Button 
                 text="{i18n>closeBtnText}" 

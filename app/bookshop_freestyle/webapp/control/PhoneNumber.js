@@ -4,7 +4,7 @@ sap.ui.define([
     "sap/ui/core/IconPool"
 ], function (Control, Button, IconPool) {
     "use strict";
-    return Control.extend("bookshop.freestyle.bookshopfreestyle.control.PhoneNumber", {
+    return Control.extend("bookshop.freestyle.control.PhoneNumber", {
         metadata: {
             aggregations: {
                 _button0: {

@@ -1,7 +1,7 @@
 {
     "_version": "1.32.0",
     "sap.app": {
-        "id": "bookshop.freestyle.bookshopfreestyle",
+        "id": "bookshop.freestyle",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -59,7 +59,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "bookshop.freestyle.bookshopfreestyle.i18n.i18n"
+                    "bundleName": "bookshop.freestyle.i18n.i18n"
                 }
             },
             "": {
@@ -87,7 +87,7 @@
             "config": {
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
-                "viewPath": "bookshop.freestyle.bookshopfreestyle.view",
+                "viewPath": "bookshop.freestyle.view",
                 "controlId": "app",
                 "controlAggregation": "pages",
                 "bypassed": {
@@ -150,7 +150,7 @@
             }
         },
         "rootView": {
-            "viewName": "bookshop.freestyle.bookshopfreestyle.view.App",
+            "viewName": "bookshop.freestyle.view.App",
             "type": "XML",
             "async": true,
             "id": "app"

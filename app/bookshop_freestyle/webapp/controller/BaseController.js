@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (Controller, UIComponent, Filter, FilterOperator, MessageBox, MessageToast,) {
     "use strict";
 
-    return Controller.extend("bookshop.freestyle.bookshopfreestyle.controller.BaseController", {
+    return Controller.extend("bookshop.freestyle.controller.BaseController", {
 
         getRouter: function () {
             return UIComponent.getRouterFor(this);
@@ -204,7 +204,7 @@ sap.ui.define([
 
             if (!this.pAuthorDialog) {
                 this.pAuthorDialog = this.loadFragment({
-                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.CreateAuthor"
+                    name: "bookshop.freestyle.view.fragments.CreateAuthor"
                 });
 
                 this.pAuthorDialog.then(oDialog => oView.addDependent(oDialog));

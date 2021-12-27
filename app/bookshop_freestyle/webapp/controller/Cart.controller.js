@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (BaseController, formatter, History, JSONModel,  MessageToast, MessageBox,) {
     "use strict";
 
-    return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Cart", {
+    return BaseController.extend("bookshop.freestyle.controller.Cart", {
         formatter: formatter,
 
         onInit: function () {
@@ -102,7 +102,7 @@ sap.ui.define([
 
             if (!this.pOrderDialog) {
                 this.pOrderDialog = this.loadFragment({
-                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.CreateOrder"
+                    name: "bookshop.freestyle.view.fragments.CreateOrder"
                 });
 
                 this.pOrderDialog.then(function (oDialog) {
@@ -180,7 +180,7 @@ sap.ui.define([
 
             if (!this.pPopover) {
                 this.pPopover = this.loadFragment({
-                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.EnterPhoneNumber"
+                    name: "bookshop.freestyle.view.fragments.EnterPhoneNumber"
                 }).then(function (oPopover) {
                     this.getView().addDependent(oPopover);
 

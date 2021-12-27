@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, MessageBox, ) {
     "use strict";
 
-    return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Object", {
+    return BaseController.extend("bookshop.freestyle.controller.Object", {
 
         onInit: function () {
             const oViewModel = new JSONModel({
@@ -48,10 +48,10 @@ sap.ui.define([
 
         createFragmentsMap: function () {
             const pEditFragment = this.loadFragment({
-                name: "bookshop.freestyle.bookshopfreestyle.view.fragments.EditBook"
+                name: "bookshop.freestyle.view.fragments.EditBook"
             });
             const pDisplayFragment = this.loadFragment({
-                name: "bookshop.freestyle.bookshopfreestyle.view.fragments.DisplayBook"
+                name: "bookshop.freestyle.view.fragments.DisplayBook"
             });
 
             const oFragmentsMap = new Map([

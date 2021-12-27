@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="bookshop.freestyle.bookshopfreestyle.controller.NotFound"
+	controllerName="bookshop.freestyle.controller.NotFound"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 

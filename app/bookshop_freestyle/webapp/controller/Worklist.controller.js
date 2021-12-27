@@ -7,7 +7,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, Filter, FilterOperator, Sorter, ) {
     "use strict";
 
-    return BaseController.extend("bookshop.freestyle.bookshopfreestyle.controller.Worklist", {
+    return BaseController.extend("bookshop.freestyle.controller.Worklist", {
 
         onInit: function () {
             const oViewModel = new JSONModel({
@@ -68,7 +68,7 @@ sap.ui.define([
 
             if (!this.pBookDialog) {
                 this.pBookDialog = this.loadFragment({
-                    name: "bookshop.freestyle.bookshopfreestyle.view.fragments.CreateBook"
+                    name: "bookshop.freestyle.view.fragments.CreateBook"
                 });
 
                 this.pBookDialog.then(oDialog => oView.addDependent(oDialog));

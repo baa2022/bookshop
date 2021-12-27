@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models, ErrorHandler) {
 	"use strict";
 
-	return UIComponent.extend("bookshop.freestyle.bookshopfreestyle.Component", {
+	return UIComponent.extend("bookshop.freestyle.Component", {
 
 		metadata : {
 			manifest: "json"
