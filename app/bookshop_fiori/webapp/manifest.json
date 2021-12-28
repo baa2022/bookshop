@@ -27,8 +27,17 @@
         "sourceTemplate": {
             "id": "ui5template.fiorielements.v4.lrop",
             "version": "1.0.0"
+        },
+        "Books-display": {
+            "signature": {
+                "parameters": {},
+                "additionalParameters": "allowed"
+            },
+            "semanticObject": "Books",
+            "action": "display",
+            "icon": "sap-icon://display"
         }
-    },  
+    },
     "sap.ui": {
         "technology": "UI5",
         "icons": {
@@ -76,7 +85,7 @@
                     "earlyRequests": true
                 }
             },
-            "convertationModel":{
+            "convertationModel": {
                 "dataSource": "convertationService",
                 "type": "sap.ui.model.json.JSONModel"
             }
@@ -93,11 +102,11 @@
                     "name": "BooksObjectPage",
                     "target": "BooksObjectPage"
                 },
-                    {
-                        "pattern": "Books({key})/orders({key2}):?query:",
-                        "name": "Orders_itemsObjectPage",
-                        "target": "Orders_itemsObjectPage"
-                    }
+                {
+                    "pattern": "Books({key})/orders({key2}):?query:",
+                    "name": "Orders_itemsObjectPage",
+                    "target": "Orders_itemsObjectPage"
+                }
             ],
             "targets": {
                 "BooksList": {
@@ -145,27 +154,27 @@
                         "settings": {
                             "editableHeaderContent": false,
                             "entitySet": "Books",
-                                "navigation": {
-                                    "orders": {
-                                        "detail": {
-                                            "route": "Orders_itemsObjectPage"
-                                        }
+                            "navigation": {
+                                "orders": {
+                                    "detail": {
+                                        "route": "Orders_itemsObjectPage"
                                     }
                                 }
-                        }
-                    }
-                },
-                    "Orders_itemsObjectPage": {
-                        "type": "Component",
-                        "id": "Orders_itemsObjectPage",
-                        "name": "sap.fe.templates.ObjectPage",
-                        "options": {
-                            "settings": {
-                                "editableHeaderContent": false,
-                                "entitySet": "Orders_items"
                             }
                         }
                     }
+                },
+                "Orders_itemsObjectPage": {
+                    "type": "Component",
+                    "id": "Orders_itemsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Orders_items"
+                        }
+                    }
+                }
             }
         },
         "contentDensities": {
@@ -185,5 +194,9 @@
         "_version": "1.1.0",
         "registrationIds": [],
         "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "bookshop.service"
     }
 }

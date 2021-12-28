@@ -23,6 +23,15 @@
                 "uri": "model/cart.json",
                 "type": "JSON"
             }
+        },
+        "Books-display": {
+            "signature": {
+                "parameters": {},
+                "additionalParameters": "allowed"
+            },
+            "semanticObject": "Books",
+            "action": "display",
+            "icon": "sap-icon://display"
         }
     },
     "sap.ui": {
@@ -155,5 +164,9 @@
             "async": true,
             "id": "app"
         }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "bookshop.service"
     }
 }
