@@ -3,8 +3,8 @@
   "authenticationMethod": "route",
   "routes": [
     {
-        "source": "^/service/(.*)$",
-        "target": "/service/$1",
+        "source": "^/v2/freestyle/(.*)$",
+        "target": "/v2/freestyle/$1",
         "destination": "bookshop-app-srv",
         "authenticationType": "xsuaa",
         "csrfProtection": false

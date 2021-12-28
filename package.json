@@ -58,7 +58,7 @@
     "cds": {
         "requires": {
             "db": {
-                "kind": "sql"
+                "kind": "hana"
             },
             "uaa": {
                 "kind": "xsuaa",

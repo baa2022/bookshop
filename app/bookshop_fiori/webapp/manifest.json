@@ -28,14 +28,18 @@
             "id": "ui5template.fiorielements.v4.lrop",
             "version": "1.0.0"
         },
-        "Books-display": {
-            "signature": {
-                "parameters": {},
-                "additionalParameters": "allowed"
-            },
-            "semanticObject": "Books",
-            "action": "display",
-            "icon": "sap-icon://display"
+        "crossNavigation": {
+            "inbounds": {
+                "Books-display": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Books",
+                    "action": "display",
+                    "icon": "sap-icon://display"
+                }
+            }
         }
     },
     "sap.ui": {

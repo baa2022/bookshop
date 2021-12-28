@@ -24,14 +24,18 @@
                 "type": "JSON"
             }
         },
-        "Books-display": {
-            "signature": {
-                "parameters": {},
-                "additionalParameters": "allowed"
-            },
-            "semanticObject": "Books",
-            "action": "display",
-            "icon": "sap-icon://display"
+        "crossNavigation": {
+            "inbounds": {
+                "Books-display": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Books",
+                    "action": "display",
+                    "icon": "sap-icon://display"
+                }
+            }
         }
     },
     "sap.ui": {
