@@ -2,10 +2,13 @@ sap.ui.define([
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
-], function (BaseController, JSONModel, MessageBox, ) {
+    "../model/formatter",
+], function (BaseController, JSONModel, MessageBox, formatter) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.controller.Object", {
+
+        formatter: formatter,
 
         onInit: function () {
             const oViewModel = new JSONModel({

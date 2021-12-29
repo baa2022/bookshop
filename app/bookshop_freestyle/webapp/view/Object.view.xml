@@ -24,6 +24,18 @@
                                 fieldGroupIds="toggleButton"
                                 visible="{= ${objectView>/isEditingMode} === false}"
                                 press=".onAddToCartPress" />
+                            <GenericTag 
+                                text="{
+                                    path : 'stock',
+                                    formatter : '.formatter.genericTagTextFormatter'
+                                }" 
+                                status="{
+                                    path : 'stock',
+                                    formatter : '.formatter.genericTagStatusFormatter'
+                                }"
+                                class="sapUiTinyMarginBegin">
+		                    </GenericTag>
+
                         </HBox>
                         
                         <Text 
