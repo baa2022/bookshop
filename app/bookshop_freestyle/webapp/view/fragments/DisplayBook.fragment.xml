@@ -44,9 +44,15 @@
             design="Bold"
             labelFor="stockField"
             vAlign="Middle" />
-        <Text
-            text="{stock}"
-            id="stockField" />
+        <ObjectStatus
+            text="{
+                path : 'stock',
+                formatter : '.formatter.replaceZeroValue'
+            }"
+            state="{
+                path : 'stock',
+                formatter : '.formatter.ObjectStatusFormatter'
+            }" />
         <Label
             text="{i18n>PriceLabel}"
             design="Bold"

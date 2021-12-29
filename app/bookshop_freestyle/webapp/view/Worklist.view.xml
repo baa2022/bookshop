@@ -31,7 +31,7 @@
 				items="{
 					path: '/Books',
 					sorter: {
-						path: 'title',
+						path: 'ID',
 						descending: false
 					},
                     parameters: {expand: 'author'}
@@ -157,8 +157,15 @@
                             <ObjectNumber
                                 number="{price}"
                                 unit="{i18n>priceUnit}"/>
-                            <Text
-								text="{stock}"/>
+                            <ObjectStatus
+                                text="{
+                                    path : 'stock',
+                                    formatter : '.formatter.replaceZeroValue'
+                                }"
+                                state="{
+                                    path : 'stock',
+                                    formatter : '.formatter.ObjectStatusFormatter'
+                                }" />
                             <RatingIndicator 
                                 value="{rating}"
                                 editable="false" />

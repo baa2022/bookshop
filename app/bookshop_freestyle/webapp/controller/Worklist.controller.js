@@ -6,10 +6,13 @@ sap.ui.define([
     "sap/ui/model/Sorter",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
-], function (BaseController, JSONModel, Filter, FilterOperator, Sorter, MessageToast, MessageBox,) {
+    "../model/formatter",
+], function (BaseController, JSONModel, Filter, FilterOperator, Sorter, MessageToast, MessageBox, formatter) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.controller.Worklist", {
+
+        formatter: formatter,
 
         onInit: function () {
             const oViewModel = new JSONModel({
@@ -189,8 +192,8 @@ sap.ui.define([
                 aQueryFilters = new Filter({
                     aFilters
                 });
-            } else if(!sQuery) {
-                const oSourceControl=oEvent.getSource()
+            } else if (!sQuery) {
+                const oSourceControl = oEvent.getSource()
                 oSourceControl.setValue("");
             }
 

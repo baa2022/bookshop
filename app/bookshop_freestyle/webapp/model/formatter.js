@@ -42,6 +42,22 @@ sap.ui.define([], function () {
             }
         },
 
+        ObjectStatusFormatter: function (iStock) {
+            if (iStock < 1) {
+                return "Error";
+            }
+
+            return "None";
+        },
+
+        replaceZeroValue: function (iStock) {
+            if (iStock < 1) {
+                return this.getResourceBundle().getText("outOfStockState");
+            }
+
+            return iStock;
+        },
+
     };
 
 });
