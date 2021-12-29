@@ -24,6 +24,7 @@ sap.ui.define([
 
         onPatternMatched: function (oEvent) {
             const sObjectId = oEvent.getParameter("arguments").objectId;
+
             this.bindView("/Books" + sObjectId);
         },
 
@@ -35,8 +36,7 @@ sap.ui.define([
                 },
                 events: {
                     dataReceived: function () {
-                        const aControls = this.getAddToCartBtns();
-                        this.setPressedStateOfToggleBtn.call(this, aControls);
+                        this.rerenderCartButtons.call(this);
                     }.bind(this)
                 }
             });

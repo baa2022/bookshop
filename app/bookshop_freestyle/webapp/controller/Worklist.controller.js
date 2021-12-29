@@ -23,11 +23,7 @@ sap.ui.define([
         },
 
         onPatternMatched: function () {
-            const aControls = this.getAddToCartBtns();
-
-            if (aControls.length > 0) {
-                this.setPressedStateOfToggleBtn(aControls);
-            }
+            this.rerenderCartButtons();
         },
 
         onUpdateFinished: function (oEvent) {
@@ -41,6 +37,8 @@ sap.ui.define([
                 sTitle = this.getResourceBundle().getText("worklistTableTitle");
             }
             this.getModel("worklistView").setProperty("/worklistTableTitle", sTitle);
+
+            this.rerenderCartButtons();
         },
 
         onPress: function (oEvent) {
@@ -197,6 +195,7 @@ sap.ui.define([
             }
 
             oBinding.filter(aQueryFilters);
+            this.rerenderCartButtons();
         },
 
         onSortPress: function (oEvent, sPath) {

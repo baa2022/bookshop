@@ -5,7 +5,7 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox",
     "sap/m/MessageToast",
-], function (Controller, UIComponent, Filter, FilterOperator, MessageBox, MessageToast,) {
+], function (Controller, UIComponent, Filter, FilterOperator, MessageBox, MessageToast, ) {
     "use strict";
 
     return Controller.extend("bookshop.freestyle.controller.BaseController", {
@@ -85,6 +85,15 @@ sap.ui.define([
             return aControls;
         },
 
+        rerenderCartButtons: function() {
+            const aControls = this.getAddToCartBtns();
+
+            if (aControls.length > 0) {
+                this.setPressedStateOfToggleBtn(aControls);
+                this.setDisabilityOfToggleBtn(aControls);
+            }
+        },
+
         setPressedStateOfToggleBtn: function (aControls) {
             aControls.map(function (oControl) {
                 const oCtx = oControl.getBindingContext();
@@ -94,6 +103,16 @@ sap.ui.define([
                 oControl.setPressed(bIsBookInCart);
 
             }.bind(this));
+        },
+
+        setDisabilityOfToggleBtn: function (aControls) {
+            aControls.map(function (oControl) {
+                const oCtx = oControl.getBindingContext();
+                const iStock = oCtx.getObject("stock");
+                const bIsBookAvailable = iStock > 0 ? true : false;
+
+                oControl.setEnabled(bIsBookAvailable);
+            });
         },
 
         readP: function (sPath, aFilters) {
@@ -130,7 +149,7 @@ sap.ui.define([
                     this.removeBookFromCart(oBook.ID);
 
                     return true;
-                }.bind(this), ()=> false)
+                }.bind(this), () => false)
                 .catch(() => { });
         },
 
@@ -152,7 +171,7 @@ sap.ui.define([
 
         closeDialog: function (oDialog, sFieldGroupId) {
             const oODataModel = this.getModel();
-            const sPath=oDialog.getBindingContext().getPath();
+            const sPath = oDialog.getBindingContext().getPath();
 
             oODataModel.resetChanges([sPath]);
             oDialog.close();
