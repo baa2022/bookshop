@@ -125,7 +125,8 @@ sap.ui.define([
         onSearch: async function (oEvent) {
             const oTable = this.byId("table");
             const oBinding = oTable.getBinding("items");
-            const sQuery = oEvent.getParameter("query");
+            const sQuery = oEvent.getParameter("query").trim();
+            let aQueryFilters;
 
             if (sQuery && sQuery.length > 0) {
                 const aAuthorFilters = [new Filter({
@@ -190,6 +191,9 @@ sap.ui.define([
                 aQueryFilters = new Filter({
                     aFilters
                 });
+            } else if(!sQuery) {
+                const oSourceControl=oEvent.getSource()
+                oSourceControl.setValue("");
             }
 
             oBinding.filter(aQueryFilters);
