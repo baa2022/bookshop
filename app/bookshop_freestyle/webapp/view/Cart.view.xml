@@ -41,6 +41,7 @@
                             step="1"
                             textAlign="Center"
                             change=".onStepInputValueChange"
+                            validationMode="LiveChange"
                             class="sapUiSmallMarginTop"
                             fieldGroupIds="stepInput" />
                     </VBox>

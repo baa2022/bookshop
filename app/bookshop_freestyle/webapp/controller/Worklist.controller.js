@@ -4,7 +4,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/Sorter",
-], function (BaseController, JSONModel, Filter, FilterOperator, Sorter, ) {
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+], function (BaseController, JSONModel, Filter, FilterOperator, Sorter, MessageToast, MessageBox,) {
     "use strict";
 
     return BaseController.extend("bookshop.freestyle.controller.Worklist", {
@@ -97,6 +99,8 @@ sap.ui.define([
                     }
                 });
                 const bRatingError = this.validateRatingIndicator(this.byId("ratingIndicator"));
+                const sInstanceName = this.getResourceBundle().getText("bookEntityTitle");
+                let sMessage = this.getResourceBundle().getText("successCreationMessage", [sInstanceName, oCtx.getObject("title")]);
                 let bValidationError = false;
 
                 aControls.forEach(function (oControl) {
@@ -104,6 +108,9 @@ sap.ui.define([
                 }, this);
 
                 if (bValidationError || bRatingError) {
+                    sMessage = this.getResourceBundle().getText("validationErrorMessage");
+                    MessageBox.error(sMessage);
+
                     return;
                 }
 
@@ -111,6 +118,7 @@ sap.ui.define([
                 oODataModel.setProperty(`${sPath}/genre_title`, sGenre);
                 oODataModel.submitChanges();
                 oDialog.close();
+                MessageToast.show(sMessage);
             }.bind(this));
         },
 
@@ -241,6 +249,7 @@ sap.ui.define([
             this.confirmP(sMessage)
                 .then(function () {
                     this.closeDialog(oDialog, sFieldGroupId);
+
                 }.bind(this))
                 .catch(() => { });
         },

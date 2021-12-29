@@ -47,17 +47,17 @@ sap.ui.define([
             const iValue = oSourceControl.getValue();
             const oCtx = oSourceControl.getBindingContext("cart");
             const iStock = oCtx.getObject("stock");
-            const iTotalValue = iValue > iStock ? iStock : iValue;
+            let iTotalValue = iValue;
+
+            if (iValue > iStock) {
+                iTotalValue = iStock;
+            }
+            else if (iValue < 1) {
+                iTotalValue = 1;
+            }
 
             oSourceControl.setValue(iTotalValue);
             this.countTotalPrice();
-
-            if(iValue >= iStock) {
-                const sMessage = this.getResourceBundle().getText("notificationBookCountMessage", iStock);
-
-                oSourceControl.setValueState("Information");
-                oSourceControl.setValueStateText(sMessage);         
-            }
         },
 
         countTotalPrice: function () {
@@ -93,8 +93,6 @@ sap.ui.define([
                             stock: oBook.stock - this.aBooksCount[index]
                         });
                     }.bind(this));
-
-                    this.clearCart();
                 }.bind(this)
             });
 
@@ -125,7 +123,8 @@ sap.ui.define([
                 const oModel = oCtx.getModel();
                 const oDate = new Date();
                 const oAddress = this.getModel("address").getProperty("/address");
-                const sAddress = `${oAddress.city}, ${oAddress.street} st., ${oAddress.house}/${oAddress.flat}`
+                const sAddress = `${oAddress.city}, ${oAddress.street} st., ${oAddress.house}/${oAddress.flat}`;
+                const sMessage = this.getResourceBundle().getText("successOrderCreationMessage");
                 const aControls = this.getView().getControlsByFieldGroupId("orderDialogControl").filter(function (oControl) {
                     if (oControl.isA("sap.m.Input")) {
                         return oControl;
@@ -138,7 +137,7 @@ sap.ui.define([
                 }, this);
 
                 if (bValidationError) {
-                    const sMessage = this.getResourceBundle().getText("validationErrorMessage");
+                    sMessage = this.getResourceBundle().getText("validationErrorMessage");
                     MessageBox.error(sMessage);
 
                     return;
@@ -146,16 +145,12 @@ sap.ui.define([
 
                 oModel.setProperty(sPath + "/date", oDate);
                 oModel.setProperty(sPath + "/address", sAddress);
-
                 oODataModel.submitChanges();
-
-                oDialog.close();
-
-                const sMessage = this.getResourceBundle().getText("successOrderCreationMessage");
-
-                MessageToast.show(sMessage);
                 
+                oDialog.close();
+                MessageToast.show(sMessage);
 
+                this.clearCart();
                 this.navigateTo("worklist");
             }.bind(this));
         },

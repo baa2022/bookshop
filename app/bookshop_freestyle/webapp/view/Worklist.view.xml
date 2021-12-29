@@ -31,7 +31,7 @@
 				items="{
 					path: '/Books',
 					sorter: {
-						path: 'ID',
+						path: 'title',
 						descending: false
 					},
                     parameters: {expand: 'author'}

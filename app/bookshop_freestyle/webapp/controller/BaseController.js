@@ -64,6 +64,7 @@ sap.ui.define([
         },
 
         clearCart: function () {
+            console.log("clear");
             const oCartModel = this.getModel("cart");
 
             oCartModel.setProperty("/cart", []);
@@ -150,6 +151,10 @@ sap.ui.define([
         },
 
         closeDialog: function (oDialog, sFieldGroupId) {
+            const oODataModel = this.getModel();
+            const sPath=oDialog.getBindingContext().getPath();
+
+            oODataModel.resetChanges([sPath]);
             oDialog.close();
             this.afterDialogClose(sFieldGroupId);
         },
@@ -249,8 +254,8 @@ sap.ui.define([
                 oDialog.close();
 
                 const sAuthorName = oModel.getProperty(sPath + "/fullName");
-                const sCreatedEntityName = this.getResourceBundle().getText("authorEntityTitle");
-                const sMessage = this.getResourceBundle().getText("successCreationMessage", [sCreatedEntityName, sAuthorName]);
+                const sInstanceName = this.getResourceBundle().getText("authorEntityTitle");
+                const sMessage = this.getResourceBundle().getText("successCreationMessage", [sInstanceName, sAuthorName]);
 
                 MessageToast.show(sMessage);
 
