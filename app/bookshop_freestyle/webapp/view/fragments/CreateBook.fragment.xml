@@ -89,7 +89,7 @@
                 }"
                 type="Number"
                 placeholder="{i18n>CreateBookPricePlaceholder}"
-                description="{i18n>priceUnit}"
+                description="{currency}"
                 fieldGroupIds="bookDialogControl" />
             <Label
                 text="{i18n>RatingLabel}"

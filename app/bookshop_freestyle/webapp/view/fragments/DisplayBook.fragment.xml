@@ -59,7 +59,7 @@
             labelFor="priceField"
             vAlign="Middle" />
         <Text
-            text="{price} {i18n>priceUnit}"
+            text="{price} {currency}"
             id="priceField" />
         <Label
             text="{i18n>DescriptionLabel}"

@@ -156,7 +156,7 @@
                                 maxLines="1"/>
                             <ObjectNumber
                                 number="{price}"
-                                unit="{i18n>priceUnit}"/>
+                                unit="{currency}"/>
                             <ObjectStatus
                                 text="{
                                     path : 'stock',

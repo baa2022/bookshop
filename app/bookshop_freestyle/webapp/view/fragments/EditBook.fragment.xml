@@ -109,7 +109,7 @@
                 }
             }"
             type="Number"
-            description="{i18n>priceUnit}"
+            description="{currency}"
             fieldWidth="90%" 
             fieldGroupIds="editBookControl"
             valueLiveUpdate="true" />
