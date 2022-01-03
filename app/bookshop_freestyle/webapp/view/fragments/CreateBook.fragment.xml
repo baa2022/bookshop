@@ -87,7 +87,7 @@
                         maximum: '10000'
                     },
                     formatOptions: {
-                        minFractionDigits: '2'
+                        minFractionDigits: 2
                     }
                 }"
                 placeholder="{i18n>CreateBookPricePlaceholder}"
