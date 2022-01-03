@@ -58,9 +58,15 @@
             design="Bold"
             labelFor="priceField"
             vAlign="Middle" />
-        <Text
-            text="{price} {currency}"
-            id="priceField" />
+        <ObjectNumber
+            number="{
+                path: 'price',
+                type: 'sap.ui.model.type.Float',
+                formatOptions: {
+                    minFractionDigits: 2
+                }
+            }"
+            unit="{currency}"/>
         <Label
             text="{i18n>DescriptionLabel}"
             design="Bold"

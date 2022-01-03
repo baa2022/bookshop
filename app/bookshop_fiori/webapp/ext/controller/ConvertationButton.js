@@ -11,7 +11,6 @@ sap.ui.define([],
                     .then(response => response.json())
                     .then(function (oData) {
                         const nOfficialRate = oData.Cur_OfficialRate;
-                        // const sPrice_BYN = Math.ceil(sPrice_USD * nOfficialRate);
                         const sPrice_BYN = sPrice_USD * nOfficialRate;
 
                         resolve(sPrice_BYN.toFixed(2));

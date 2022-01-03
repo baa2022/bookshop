@@ -48,7 +48,7 @@
                     <VBox>
                         <ObjectNumber 
                             number="{cart>price}"
-                            unit="{currency}" />
+                            unit="{cart>currency}" />
                     </VBox>
                 </HBox>
             </CustomListItem >
@@ -61,7 +61,7 @@
                     class="sapUiSmallMarginBegin"/>
                 <ObjectNumber 
                     number="{cart>/totalPrice}"
-                    unit="{= ${cart>/booksInCart} > 0 ? ${currency} : ''}" />
+                    unit="{= ${cart>/booksInCart} > 0 ? ${i18n>priceUnit} : ''}" />
 				<ToolbarSpacer/>
 				<Button
                     text="{i18n>proceedBtnText}"

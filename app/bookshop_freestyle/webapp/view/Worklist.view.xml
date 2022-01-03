@@ -30,10 +30,6 @@
 				width="auto"
 				items="{
 					path: '/Books',
-					sorter: {
-						path: 'ID',
-						descending: false
-					},
                     parameters: {expand: 'author'}
 				}"
 				noDataText="{worklistView>/tableNoDataText}"
@@ -155,7 +151,13 @@
                                 tooltip="{descr}"
                                 maxLines="1"/>
                             <ObjectNumber
-                                number="{price}"
+                                number="{
+                                    path: 'price',
+                                    type: 'sap.ui.model.type.Float',
+                                    formatOptions: {
+                                        minFractionDigits: 2
+                                    }
+                                }"
                                 unit="{currency}"/>
                             <ObjectStatus
                                 text="{

@@ -64,7 +64,6 @@ sap.ui.define([
         },
 
         clearCart: function () {
-            console.log("clear");
             const oCartModel = this.getModel("cart");
 
             oCartModel.setProperty("/cart", []);
@@ -85,7 +84,7 @@ sap.ui.define([
             return aControls;
         },
 
-        rerenderCartButtons: function() {
+        rerenderCartButtons: function () {
             const aControls = this.getAddToCartBtns();
 
             if (aControls.length > 0) {
@@ -289,6 +288,22 @@ sap.ui.define([
 
             oItemsBinding.filter();
             oSelectControl.setSelectedKey(oItem);
+        },
+
+        formatPriceValue: function (oEvent) {
+            const oSourceControl = oEvent.getSource();
+            const sPrice = oSourceControl.getValue().replaceAll(",", "");
+
+            if (!isNaN(+sPrice)) {
+                const fRoundedPrice = +((+sPrice).toFixed(2));
+
+                const fFinalPrice = fRoundedPrice.toLocaleString('en',
+                    {
+                        maximumFractionDigits: 2
+                    });
+
+                oSourceControl.setValue(fFinalPrice);
+            }
         },
 
     })

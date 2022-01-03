@@ -85,9 +85,9 @@
             value="{
                 path: 'stock',
                 type: 'sap.ui.model.type.Integer',
-                    constraints: {
-                        minimum: 0,
-                        maximum: 1000000
+                constraints: {
+                    minimum: 0,
+                    maximum: 100000
                 }
             }"
             type="Number"
@@ -102,17 +102,18 @@
         <Input
             value="{
                 path: 'price',
-                type: 'sap.ui.model.type.Integer',
-                    constraints: {
-                        minimum: 0,
-                        maximum: 1000000
-                }
+                type: 'sap.ui.model.type.Float',
+                constraints: {
+                    minimum: '0.01',
+                    maximum: '10000'
+                },
+                formatOptions: {
+					minFractionDigits: '2'
+				}
             }"
-            type="Number"
             description="{currency}"
-            fieldWidth="90%" 
-            fieldGroupIds="editBookControl"
-            valueLiveUpdate="true" />
+            fieldWidth="90%"
+            change=".formatPriceValue" />
         <Label
             text="{i18n>DescriptionLabel}"
             design="Bold"

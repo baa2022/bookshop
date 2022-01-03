@@ -81,16 +81,18 @@
             <Input
                 value="{
                     path: 'price',
-                    type: 'sap.ui.model.type.Integer',
+                    type: 'sap.ui.model.type.Float',
                     constraints: {
-                        minimum: 0,
-                        maximum: 1000000
+                        minimum: '0.01',
+                        maximum: '10000'
+                    },
+                    formatOptions: {
+                        minFractionDigits: '2'
                     }
                 }"
-                type="Number"
                 placeholder="{i18n>CreateBookPricePlaceholder}"
                 description="{currency}"
-                fieldGroupIds="bookDialogControl" />
+                change=".formatPriceValue" />
             <Label
                 text="{i18n>RatingLabel}"
                 required="true"/>
