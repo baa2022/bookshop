@@ -1,0 +1,200 @@
+[
+    {
+        "ID": "0733759a-bd7b-4366-aa3d-d937c8308c69",
+        "stock": 2,
+        "price": 4.75,
+        "currency": "USD",
+        "title": "sdegvzdfvgazsegvzsedfrbz",
+        "descr": "esdfzsdbrthцквепквпмуп пуепмцуек цп ыцкеп цеуп уеп ",
+        "genre_title": "Mystery",
+        "author_ID": "559ae2a8-ecba-415c-bd31-4ac722e3d158",
+        "rating": 2
+    },
+    {
+        "ID": "29b9744d-d816-4310-807f-bb0a6f8aa6ab",
+        "stock": 97,
+        "price": 11,
+        "currency": "USD",
+        "title": "Complications",
+        "descr": "Complications: A Surgeon's Notes on an Imperfect Science is a nonfiction book collection of essays written by the American surgeon Atul Gawande. Gawande wrote this during his general surgery residency at Brigham and Women's Hospital and was published in 2002 by Picador.",
+        "genre_title": "Romance",
+        "author_ID": "fbab3bbc-efe0-4bbd-ab31-2663c3e7c197",
+        "rating": 3
+    },
+    {
+        "ID": "3b48fcc6-f5b9-4e16-9260-4bceaf8a50c3",
+        "stock": 26,
+        "price": 23,
+        "currency": "USD",
+        "title": "Wuthering Heights",
+        "descr": "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff.",
+        "genre_title": "Tragedy",
+        "author_ID": "06f8349f-fb9e-41d0-9070-363910af4021",
+        "rating": 5
+    },
+    {
+        "ID": "4408b8e9-9cd9-43c1-97ed-64b1d29e9a0c",
+        "stock": 473,
+        "price": 19.11,
+        "currency": "USD",
+        "title": "Harry Potter and the Chamber of Secrets",
+        "descr": "A house-elf warns Harry against returning to Hogwarts, but he decides to ignore it. When students and creatures at the school begin to get petrified, Harry finds himself surrounded in mystery.",
+        "genre_title": "Fantasy",
+        "author_ID": "d6cb40fb-659c-4b91-9079-b55afdaf0833",
+        "rating": 5
+    },
+    {
+        "ID": "4563beb9-31cb-4813-825b-700ef043c638",
+        "stock": 110,
+        "price": 14.99,
+        "currency": "USD",
+        "title": "Jane Eyre",
+        "descr": "Jane Eyre is a novel by English writer Charlotte Brontë, published under the pen name 'Currer Bell', on 16 October 1847, by Smith, Elder & Co. of London. The first American edition was published the following year by Harper & Brothers of New York.Jane Eyre is a novel by English writer Charlotte Brontë, published under the pen name 'Currer Bell', on 16 October 1847, by Smith, Elder & Co. of London. The first American edition was published the following year by Harper & Brothers of New York.",
+        "genre_title": "Romance",
+        "author_ID": "07662818-79af-4289-b6ee-e5c79a9572d0",
+        "rating": 4
+    },
+    {
+        "ID": "47d76ab2-16ae-4d4c-a9ae-ec57bb63e944",
+        "stock": 54,
+        "price": 2.99,
+        "currency": "USD",
+        "title": "Test book",
+        "descr": "test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test",
+        "genre_title": "Art",
+        "author_ID": "370776ea-d0bf-46dc-8e3e-d22dcc3ef140",
+        "rating": 5
+    },
+    {
+        "ID": "620bc15a-0990-4163-b071-9aaf191e8ca0",
+        "stock": 56,
+        "price": 13,
+        "currency": "USD",
+        "title": "Hamlet",
+        "descr": "The Tragedy of Hamlet, Prince of Denmark, often shortened to Hamlet, is a tragedy written by William Shakespeare sometime between 1599 and 1601. It is Shakespeare's longest play, with 29,551 words.",
+        "genre_title": "Tragedy",
+        "author_ID": "b68afdde-1231-4e80-9611-0fa8ad3eb1ea",
+        "rating": 5
+    },
+    {
+        "ID": "6f37ccca-34dc-4453-89da-64ef04844c9d",
+        "stock": 59,
+        "price": 32,
+        "currency": "USD",
+        "title": "The Raven",
+        "descr": "First published in January 1845, the poem is often noted for its musicality, stylized language, and supernatural atmosphere. It tells of a talking raven's mysterious visit to a distraught lover, tracing the man's slow descent into madness.",
+        "genre_title": "Poetry",
+        "author_ID": "7dbf2fec-17ed-4990-b636-5f4cc68fc546",
+        "rating": 5
+    },
+    {
+        "ID": "8185300f-47d7-45c7-b3db-0e7b5ca2afd1",
+        "stock": 166,
+        "price": 14.07,
+        "currency": "USD",
+        "title": "Romeo and Juliet",
+        "descr": "Romeo and Juliet is a tragedy written by William Shakespeare early in his career about two young Italian star-crossed lovers whose deaths ultimately reconcile their feuding families. It was among Shakespeare's most popular plays during his lifetime and, along with Hamlet, is one of his most frequently performed plays.",
+        "genre_title": "Tragedy",
+        "author_ID": "b68afdde-1231-4e80-9611-0fa8ad3eb1ea",
+        "rating": 4
+    },
+    {
+        "ID": "90f10eca-ef79-47fe-9bf1-706d71e26eeb",
+        "stock": 76,
+        "price": 32,
+        "currency": "USD",
+        "title": "Murder on the Orient Express",
+        "descr": "Murder on the Orient Express is a work of detective fiction by English writer Agatha Christie featuring the Belgian detective Hercule Poirot. It was first published in the United Kingdom by the Collins Crime Club on 1 January 1934.",
+        "genre_title": "Mystery",
+        "author_ID": "bbb3b110-7363-492f-b294-f51a898dd06b",
+        "rating": 4
+    },
+    {
+        "ID": "96edb013-84ce-4ad2-b0c5-a0d094c9ebc4",
+        "stock": 78,
+        "price": 17.05,
+        "currency": "USD",
+        "title": "Eleonora",
+        "descr": "'Eleonora' is a short story by Edgar Allan Poe, first published in 1842 in Philadelphia in the literary annual The Gift. It is often regarded as somewhat autobiographical and has a relatively 'happy' ending.",
+        "genre_title": "Action",
+        "author_ID": "7dbf2fec-17ed-4990-b636-5f4cc68fc546",
+        "rating": 3
+    },
+    {
+        "ID": "9fd4116a-616b-4265-938c-65ba4eb1e0f7",
+        "stock": 179,
+        "price": 16.99,
+        "currency": "USD",
+        "title": "Harry Potter and the Prisoner of Azkaban",
+        "descr": "Harry, Ron and Hermoine return to Hogwarts just as they learn about Sirius Black and his plans to kill Harry. However, when Harry runs into him, he learns that the truth is far from reality.",
+        "genre_title": "Fantasy",
+        "author_ID": "d6cb40fb-659c-4b91-9079-b55afdaf0833",
+        "rating": 5
+    },
+    {
+        "ID": "bec06fdb-9e28-48cd-adce-73de58e0ead1",
+        "stock": 225,
+        "price": 7.55,
+        "currency": "USD",
+        "title": "Harry Potter and the Philosopher's Stone",
+        "descr": "Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.",
+        "genre_title": "Fantasy",
+        "author_ID": "d6cb40fb-659c-4b91-9079-b55afdaf0833",
+        "rating": 5
+    },
+    {
+        "ID": "ce298336-2e1d-4fae-9f37-0c27942b2317",
+        "stock": 0,
+        "price": 6,
+        "currency": "USD",
+        "title": "War and Peace",
+        "descr": "War and Peace is a literary work mixed with chapters on history and philosophy by the Russian author Leo Tolstoy, first published serially, then published in its entirety in 1869. It is regarded as one of Tolstoy's finest literary achievements and remains an internationally praised classic of world literature.",
+        "genre_title": "Classic",
+        "author_ID": "370776ea-d0bf-46dc-8e3e-d22dcc3ef140",
+        "rating": 5
+    },
+    {
+        "ID": "d036b2c2-02b7-4c78-9549-43a5c6d2e371",
+        "stock": 993,
+        "price": 13.35,
+        "currency": "USD",
+        "title": "Robin of Sherwood: The Hooded Man",
+        "descr": "In a dramatic retelling of the famous legend, a young boy dreams of Robin Hood, Sherwood Forest's most notorious outlaw, who is discovering the dangers that go along with his fame and success.",
+        "genre_title": "Drama",
+        "author_ID": "aa5be420-27be-492d-a000-4a772f5c2865",
+        "rating": 4
+    },
+    {
+        "ID": "dbd33285-b234-4134-846e-50127f9d20a7",
+        "stock": 20,
+        "price": 2.24,
+        "currency": "USD",
+        "title": "Book",
+        "descr": "Book Title. Its very interesting",
+        "genre_title": "Comedy",
+        "author_ID": "559ae2a8-ecba-415c-bd31-4ac722e3d158",
+        "rating": 5
+    },
+    {
+        "ID": "de6d0417-042a-49d8-81a8-18b6db28ac03",
+        "stock": 0,
+        "price": 9.7,
+        "currency": "USD",
+        "title": "Catweazle",
+        "descr": "Catweazle is a magician from the time of the Normans who is cast into the future by magic. With the help of two boys he uses magic in an attempt to return to his own time.",
+        "genre_title": "Comedy",
+        "author_ID": "aa5be420-27be-492d-a000-4a772f5c2865",
+        "rating": 5
+    },
+    {
+        "ID": "f5afb9b1-490c-4dc3-833e-2e74a87e80ea",
+        "stock": 194,
+        "price": 9.63,
+        "currency": "USD",
+        "title": "Anna Karenina",
+        "descr": "Anna Karenina is a novel by the Russian author Leo Tolstoy, first published in book form in 1878. Many writers consider it to be one of the greatest works of literature ever written, and Tolstoy himself called it his first true novel.",
+        "genre_title": "Classic",
+        "author_ID": "370776ea-d0bf-46dc-8e3e-d22dcc3ef140",
+        "rating": 5
+    }
+]

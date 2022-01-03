@@ -1,0 +1,50 @@
+[
+    {
+        "ID": "3a59c6d4-e599-44c3-8586-509a0aefbf67",
+        "date": "2021-12-29",
+        "fullName": "Maryia Hutkouskaya",
+        "email": "maryia.hutkouskaya@leverx.com",
+        "phone": "+375299996633",
+        "address": "Solihorsk, Qwerty st., 87/44"
+    },
+    {
+        "ID": "4d66a808-9c97-44f3-a088-fd45add569c4",
+        "date": "2021-10-27",
+        "fullName": "Alina Balysh",
+        "email": "alina.balysh@leverx.com",
+        "phone": "+375298745632",
+        "address": "Minsk, Lopatina st., 7/1607"
+    },
+    {
+        "ID": "5abaee8a-0b23-4515-9ecd-a780e6cd9fbb",
+        "date": "2021-11-05",
+        "fullName": "Victor Popovich",
+        "email": "victor.bondarenko@leverx.com",
+        "phone": "+375443698541",
+        "address": "Minsk, Belorusskaya st., 21/21"
+    },
+    {
+        "ID": "b8e42cb2-205c-47ec-829b-6883019645ae",
+        "date": "2021-10-12",
+        "fullName": "Victor Popovich",
+        "email": "victor.bondarenko@leverx.com",
+        "phone": "+375443698541",
+        "address": "Minsk, Belorusskaya st., 21/21"
+    },
+    {
+        "ID": "d1ffebd7-14f1-4e80-b71c-9b20fbf5408b",
+        "date": "2021-04-29",
+        "fullName": "Dora the Explorer",
+        "email": "dora.minova@leverx.com",
+        "phone": "+375337469536",
+        "address": "Minsk, Kosmonavtov st., 83/34"
+    },
+    {
+        "ID": "f1807f03-537d-459b-8337-6b3e0b573e99",
+        "date": "2021-12-29",
+        "fullName": "Maryia Hutkouskaya",
+        "email": "maryia.hutkouskaya@leverx.com",
+        "phone": "+375299996633",
+        "address": "Solihorsk, Qwerty st., 87/44"
+    }
+]
